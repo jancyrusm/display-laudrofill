@@ -35,7 +35,7 @@ $Username = $_SESSION['username'];
             </div>
             <div>
                 <div id="btn2" class="box">
-                    <p>Transaction History</p>
+                    <p> Transaction History </p>
                 </div>
             </div>
             <div>
