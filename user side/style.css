@@ -1,0 +1,72 @@
+body {
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(fonts/Inter.ttf);
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.header {
+    color: #404040;
+    font-family: Inter;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.subtitle {
+    color: #404040;
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.frame_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 158px;
+}
+
+.frame_1, p {
+    color: #404040;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+.frame_1 + div {
+    width: 242px;
+    height: 307px;
+}
+
+.box {
+    width: 242px;
+    height: 248px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: #404040;
+    cursor: pointer;
+}
+
+/* products */
+
