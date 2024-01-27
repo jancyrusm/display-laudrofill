@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> User </title>
+</head>
+<body>
+    <div class="frame">
+        <p class="header"> Product Selected: Product <span id="ProductID"></span> </p>
+        <p class="subtitle"> Select Volume </p>
+        <div class="frame_1" style="gap:20px;"> 
+            <div>
+                <div class="box" id="volume1"> </div>
+                <p id="prod_vol1"> 60ml </p>
+            </div>
+            <div>
+                <div class="box" id="volume2"> </div>
+                <p id="prod_vol2"> 80ml  </p>
+            </div>
+            <div>
+                <div class="box" id="volume3"> </div>
+                <p id="prod_vol3"> 125ml </p>
+            </div>
+            <div>
+                <div class="box" id="volume4"> </div>
+                <p id="prod_vol4"> 185ml </p>
+            </div>
+            <div>
+                <div class="box" id="volume5"> </div>
+                <p id="prod_vol5"> 205ml </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+
+    function getTheProductID() {
+        const currentURL = window.location.href;
+        const parameterValue = currentURL.split('?')[1];
+        console.log('ID value:', parameterValue);
+        $('#ProductID').text(parameterValue);
+    }
+
+    function getVolumeQty() {
+        $.ajax({
+            url:'php/getUserData.php',
+            type:'POST',
+            data:{
+                tagged: "getProductVolume"
+            },
+            success: function(res) {
+                console.log(res);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+
+        getTheProductID();
+
+
+        //Product 1 button
+        $('#volume1').on('click', function(){
+            window.location.href = 'product_volume.html?1'
+        });
+
+        //Product 2 button
+        $('#volume2').on('click', function(){
+            window.location.href = 'product_volume.html?2'
+        });
+
+        //Product 3 button
+        $('#volume3').on('click', function(){
+            window.location.href = 'product_volume.html?3'
+        });
+
+        //Product 3 button
+        $('#volume4').on('click', function(){
+            window.location.href = 'product_volume.html?3'
+        });
+
+        //Product 3 button
+        $('#volume5').on('click', function(){
+            window.location.href = 'product_volume.html?3'
+        });
+
+    });
+
+</script>
+
+
+</html>
+
