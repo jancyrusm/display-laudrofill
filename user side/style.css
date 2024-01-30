@@ -54,7 +54,7 @@ body {
 .header {
     color: #404040;
     font-family: Inter;
-    font-size: 64px;
+    font-size: 55px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -243,7 +243,7 @@ input[type=button] {
 
 .cont-header p {
     text-align: start;
-    font-size: 50px;
+    font-size: 55px;
 }
 
 /* .content-cont {

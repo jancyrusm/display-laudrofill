@@ -145,7 +145,7 @@
                         </svg>
                         <p style="font-size:65px;">Recommended</p>
                     </div>
-                    <p class="subtitle" id="ld_suggest">For a <span id="laundry_load"></span>kg of Laundry Load, <span id="reco_ld"></span> of Liquid Detergent is prefered</p>
+                    <p class="subtitle" id="ld_suggest">For a <span id="laundry_load"></span> kg of <span id="stain_level"></span> laundry, <span id="reco_ld"></span> of Liquid Detergent is prefered</p>
                     
                 </div>
                 <div class="content-cont" style="display:flex; flex-direction: row; justify-content: space-around;">
@@ -155,7 +155,7 @@
             </div>
         </div>
 
-        <!-- Page 3_6: Suggest prefered Liquid Detergent Amount for Stained Laundry -->
+        <!-- Page 3_6: Suggest prefered Liquid Detergent Amount for Stained Laundry
         <div class="page" id="page3_6" style="background-color: #404040;">
             <div class="frame" style="display:flex; flex-direction: column;">
                 <div class="input-title" style="display: flex; flex-direction: column; justify-content:center; align-items:center;">
@@ -165,7 +165,7 @@
                         </svg>
                         <p style="font-size:65px;">Recommended</p>
                     </div>
-                    <p class="subtitle" id="ld_suggest">For a <span id="stain_level"></span>laundry, <span id="reco_ld_stained"></span> of Liquid Detergent is prefered</p>
+                    <p class="subtitle" id="ld_suggest">For a <span id="laundry_load"></span> of <span id="stain_level"></span> laundry, <span id="reco_ld_stained"></span> of Liquid Detergent is prefered</p>
                     
                 </div>
                 <div class="content-cont" style="display:flex; flex-direction: row; justify-content: space-around;">
@@ -173,7 +173,7 @@
                     <div class="option-cont btn btn-default" id="NoLDAmount">No</div>
                 </div>  
             </div>
-        </div>
+        </div> -->
     
         <!-- Page 5: select liquid detergent -->
         <div class="page" id="page5">
@@ -224,7 +224,41 @@
                 
                 <div class="cont" id="cont1">
                     <div class="cont-header">
-                        <div style="display: flex;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        PRODUCTS
+                                    </th>
+                                    <th>
+                                        VOLUME (ml)
+                                    </th>
+                                    <th>
+                                        PRICE
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="header ProductDisplay" id="ProductNameDisplay">LD</td>
+                                    <td class="header VolumeDisplay" id="VolumeDisplay">0</td>
+                                    <td class="header PriceDisplay" id="PriceDisplay">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="header" id="CupDisplay">CUP</td>
+                                    <td class="header" id="CupVolDisplay">0</td>
+                                    <td class="header" id="CupPriceDisplay">0.00</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="header" >Total</td>
+                                    <td class="header" ></td>
+                                    <td class="header" id="TotalPrice">0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- <div style="display: flex;">
                             <p class="header" style="color:gray">PRODUCT: </p> 
                             <p class="header ProductDisplay" id="ProductNameDisplay" style="margin-left:25px;"></p>
                         </div>
@@ -235,7 +269,7 @@
                         <div style="display: flex;">
                             <p class="header" style="color:gray">PRICE: </p> 
                             <p class="header PriceDisplay" id="PriceDisplay" style="margin-left:25px;"></p>
-                        </div>
+                        </div> -->
                         
                     </div>
                     
@@ -254,7 +288,7 @@
                         </div>
                         <div class="input-number" id="AmountInserted" style="padding:140px 0;">
                             <div class="money-sign">₱</div>
-                            <div class="money-amount">10.00</div>
+                            <div class="money-amount">20.00</div>
                         </div>
                     </div>
                 </div>
@@ -306,6 +340,66 @@
         </div>
 
 
+        <!-- Page 10: CUP Dispenser
+        <div class="page" id="page10">
+            <div class="frame" style="display:flex; flex-direction: row;">
+                
+                <div class="cont" id="cont1">
+                    <div class="cont-header">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        PRODUCTS
+                                    </th>
+                                    <th>
+                                        VOLUME (ml)
+                                    </th>
+                                    <th>
+                                        PRICE
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="header ProductDisplay" id="ProductNameDisplay">LD</td>
+                                    <td class="header VolumeDisplay" id="VolumeDisplay">0</td>
+                                    <td class="header PriceDisplay" id="PriceDisplay">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="header" >CUP</td>
+                                    <td class="header" >0</td>
+                                    <td class="header" >0.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    
+                    <p id="errorMessage" class="subtitle" style="font-size:30px; padding:40px 0; color:red; display:none;"> * please enter a valid value * </p>
+                    <div class="cont-button">
+                        <center>
+                            <input id="startCollecting" class="btn btn-default" type="button" value="Start" disabled>
+                            <input id="cancelCollecting" class="btn btn-default" type="button" value="Cancel">
+                        </center>
+                    </div>
+                </div>
+                <div class="cont" id="cont2">
+                    <div class="big-box">
+                        <div class="input-title" >
+                            <p style="font-size:65px;">Amount Inserted</p>
+                        </div>
+                        <div class="input-number" id="AmountInserted" style="padding:140px 0;">
+                            <div class="money-sign">₱</div>
+                            <div class="money-amount">10.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
     </div>
     
     
@@ -327,12 +421,14 @@
     var product1_name = null;
     var product2_name = null;
     var product3_name = null;
+    var product4_name = null;
 
     var product_60ml  = null;
     var product_80ml  = null;
     var product_125ml = null;
     var product_185ml = null;
     var product_205ml = null;
+    var product_cup   = null;
 
     var product_60ml_rate = null;
     var product_80ml_rate = null;
@@ -347,12 +443,15 @@
         product1_name = 'TIDE';
         product2_name = 'ARIEL';
         product3_name = 'SURF';
+        product4_name = 'CUP';
+        product_cupsize = '12oz';
 
         product_60ml = '10.00';
         product_80ml = '15.00';
         product_125ml = '20.00';
         product_185ml = '25.00';
         product_205ml = '30.00';
+        product_cupPrice = '5.00';
 
         product_60ml_rate = 2120;
         product_80ml_rate = 2820;
@@ -446,6 +545,85 @@
         }
     }
 
+
+    function suggestLiquidDetergentAmoundForStained() {
+        var laundry_load = $('#kiloCounter').text();
+        var stain_level = $('#selectedStain').text();
+
+        $('#stain_level').text(stain_level);
+        $('#laundry_load').text(laundry_load);
+        $('#reco_ld_stained').text();
+
+        if(laundry_load <= 2){
+            var LD_vol = "60ml";
+            $('#laundry_load').text(laundry_load);
+            $('#reco_ld').text(LD_vol);
+
+        }
+        else if(laundry_load > 2 && laundry_load <= 4){
+            var LD_vol = "80ml";
+            $('#laundry_load').text(laundry_load);
+            $('#reco_ld').text(LD_vol);
+        }
+        else if(laundry_load > 4 && laundry_load <= 6){
+            var LD_vol = "125ml";
+            $('#laundry_load').text(laundry_load);
+            $('#reco_ld').text(LD_vol);
+        }
+        else if(laundry_load > 6 && laundry_load <= 8){
+            var LD_vol = "185ml";
+            $('#laundry_load').text(laundry_load);
+            $('#reco_ld').text(LD_vol);
+        }
+        else if(laundry_load > 8 && laundry_load <= 10){
+            var LD_vol = "205ml";
+            $('#laundry_load').text(laundry_load);
+            $('#reco_ld').text(LD_vol);
+        }
+    }
+
+    function LiquidDetergentDispensing() {
+        var laundry_load = $('#kiloCounter').text();
+        var stain_level = $('#selectedStain').text();
+        var product_name = $('#ProductNameDisplay').text();
+        var product_vol = $('#VolumeDisplay').text();
+        var product_price = $('#PriceDisplay').text();
+
+        document.getElementById('page8').scrollIntoView({ behavior: 'smooth' });
+
+        if(product_vol == "60ml"){
+            updateProgressBar(3000);
+            setTimeout(function() {
+                document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
+            }, 3500);
+        }
+        else if (product_vol == "80ml"){
+            updateProgressBar(3500);
+            setTimeout(function() {
+                document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
+            }, 4000);
+        }
+        else if (product_vol == "125ml"){
+            updateProgressBar(4500);
+            setTimeout(function() {
+                document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
+            }, 5000);
+        }
+        else if (product_vol == "185ml"){
+            updateProgressBar(6500);
+            setTimeout(function() {
+                document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
+            }, 7000);
+        }
+        else if (product_vol == "205ml"){
+            updateProgressBar(7500);
+            setTimeout(function() {
+                document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
+            }, 8000);
+        }
+    }
+
+
     $(document).ready(function() {
 
         collectAllData();
@@ -455,15 +633,14 @@
         $('#productName3').text(product3_name);
 
         //Page 1: Start LaundroFill
-        document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
-        $('#startLoading').show();
-        setTimeout(startLaundrofill, 3000);
+        // document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
+        // $('#startLoading').show();
+        // setTimeout(startLaundrofill, 3000);
 
         //hidden inputs:
         $('#selectedStain').hide();
 
         //Page 2: Laundry Load
-        //for the kilo counter
         $('#number_up').on('click', function() {
 
             var kiloCounter = $('#kiloCounter').text();
@@ -471,7 +648,6 @@
             $('#kiloCounter').text(kiloCounter);
         });
 
-        //for the kilo counter
         $('#number_down').on('click', function() {
 
             var kiloCounter = $('#kiloCounter').text();
@@ -523,7 +699,6 @@
 
 
         //Page 4: Select Laundry Detergent
-        //Product 1 button
         $('#product1').on('click', function(){
             // var product_name1 = $('#productName1').text();
             // document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
@@ -539,73 +714,68 @@
             suggestLiquidDetergentAmound();
         });
 
-
-        //Product 2 button
         $('#product2').on('click', function(){
-            var product_name2 = $('#productName2').text();
-            document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
-            $('.ProductDisplay').text(product_name2);
+            // var product_name2 = $('#productName2').text();
+            // document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
+            // $('.ProductDisplay').text(product_name2);
+
+            suggestLiquidDetergentAmound();
         });
 
-        //Product 3 button
         $('#product3').on('click', function(){
-            var product_name3 = $('#productName3').text();
-            document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
-            $('.ProductDisplay').text(product_name3);
+            // var product_name3 = $('#productName3').text();
+            // document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
+            // $('.ProductDisplay').text(product_name3);
+
+            suggestLiquidDetergentAmound();
         });
 
 
 
         //Page 5: Select Laundry Detergent Amount
-        //volume 1 button
-
         $('#volume1').on('click', function(){
             var vol_1 = $('#prod_vol1').text().trim();
 
             if(vol_1 == "60ml"){
                 $('.PriceDisplay').text(product_60ml);
             }
-            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
             $('.VolumeDisplay').text(vol_1);
         });
 
-        //Product 2 button
         $('#volume2').on('click', function(){
             var vol_2 = $('#prod_vol2').text().trim();
             if(vol_2 == "80ml"){
                 $('.PriceDisplay').text(product_80ml);
             }
-            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
             $('.VolumeDisplay').text(vol_2);
         });
 
-        //Product 3 button
         $('#volume3').on('click', function(){
             var vol_3 = $('#prod_vol3').text().trim();
             if(vol_3 == "125ml"){
                 $('.PriceDisplay').text(product_125ml);
             }
-            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
             $('.VolumeDisplay').text(vol_3);
         });
 
-        //Product 4 button
         $('#volume4').on('click', function(){
             var vol_4 = $('#prod_vol4').text().trim();
             if(vol_4 == "185ml"){
                 $('.PriceDisplay').text(product_185ml);
             }
-            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
             $('.VolumeDisplay').text(vol_4);
         });
 
-        //Product 5 button
         $('#volume5').on('click', function(){
             var vol_5 = $('#prod_vol5').text().trim();
             if(vol_5 == "205ml"){
                 $('.PriceDisplay').text(product_205ml);
             }
-            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
             $('.VolumeDisplay').text(vol_5);
         });
 
@@ -613,7 +783,7 @@
         //Page 6: Amount Inserted
         $('.money-amount').on('click', function() {
             var insertedAmount = $('.money-amount').text();
-            var amountToPay = $('.PriceDisplay').text();
+            var amountToPay = $('#TotalPrice').text();
             var insertedAmountValue = parseFloat(insertedAmount.trim());
             var amountToPayValue = parseFloat(amountToPay.trim());
 
@@ -625,7 +795,7 @@
             }
 
             $('#startCollecting').on('click', function() {
-                document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
+                LiquidDetergentDispensing();
             });
         });
         
@@ -633,19 +803,19 @@
         //Page 3_5: Use Laundry Detergent for Stain
         $('#YesStrongLD').on('click', function() {
 
-            var stain_level = $('#selectedStain').text();
-            $('#stain_level').text(stain_level)
-
-            document.getElementById('page3_6').scrollIntoView({ behavior: 'smooth' });
+            suggestLiquidDetergentAmoundForStained();
+            document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
         });
+
         $('#NoStrongLD').on('click', function() {
-            document.getElementById('page5').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page4').scrollIntoView({ behavior: 'smooth' });
         });
 
         //PAGE 4_5: Suggest Amount of Liquid Detergent
         $('#YesLDAmount').on('click', function() {
             var reco_vol = $('#reco_ld').text();
             var laundry_load = $('#laundry_load').text();
+
             $('.VolumeDisplay').text(reco_vol);
             if(reco_vol == "60ml"){
                 $('.PriceDisplay').text(product_60ml);
@@ -664,8 +834,9 @@
             }
 
 
-            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
         });
+
         $('#NoLDAmount').on('click', function() {
             document.getElementById('page5').scrollIntoView({ behavior: 'smooth' });
         });
@@ -677,47 +848,39 @@
         //Page 7: Yes CUP
         $('#YesCup').on('click', function() {
 
-            var laundry_load = $('#kiloCounter').text();
-            var stain_level = $('#selectedStain').text();
-            var product_name = $('#ProductNameDisplay').text();
-            var product_vol = $('#VolumeDisplay').text();
-            var product_price = $('#PriceDisplay').text();
+            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
 
-            document.getElementById('page8').scrollIntoView({ behavior: 'smooth' });
+            var ProductName = $('#ProductNameDisplay').text().trim();
+            var ProductVol = $('#VolumeDisplay').text().trim();
+            var ProductPrice = parseFloat($('#PriceDisplay').text().trim());
 
-            if(product_vol == "60ml"){
-                updateProgressBar(3000);
-                setTimeout(function() {
-                    document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
-                }, 3500);
-            }
-            else if (product_vol == "80ml"){
-                updateProgressBar(3500);
-                setTimeout(function() {
-                    document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
-                }, 4000);
-            }
-            else if (product_vol == "125ml"){
-                updateProgressBar(4500);
-                setTimeout(function() {
-                    document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
-                }, 5000);
-            }
-            else if (product_vol == "185ml"){
-                updateProgressBar(6500);
-                setTimeout(function() {
-                    document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
-                }, 7000);
-            }
-            else if (product_vol == "205ml"){
-                updateProgressBar(7500);
-                setTimeout(function() {
-                    document.getElementById('page9').scrollIntoView({ behavior: 'smooth' });
-                }, 8000);
-            }
-            
-            
+            var Cup = $('#CupDisplay').text().trim();
+            var CupVol = $('#CupVolDisplay').text().trim();
+            var CupPrice = parseFloat($('#CupPriceDisplay').text().trim());
+
+            var TotalPrice = (ProductPrice + CupPrice).toFixed(2);
+
+            $('#TotalPrice').text(TotalPrice);
+        
         });
+
+        $('#NoCup').on('click', function() {
+            document.getElementById('page6').scrollIntoView({ behavior: 'smooth' });
+
+            var ProductName = $('#ProductNameDisplay').text().trim();
+            var ProductVol = $('#VolumeDisplay').text().trim();
+            var ProductPrice = parseFloat($('#PriceDisplay').text().trim());
+
+            var Cup = $('#CupDisplay').text(product4_name);
+            var CupVol = $('#CupVolDisplay').text(product_cupsize);
+            var CupPrice = $('#CupPriceDisplay').text(product_cupPrice);
+            var CupPriceConverted = parseFloat(product_cupPrice.trim());
+
+            var TotalPrice = (ProductPrice + CupPriceConverted).toFixed(2);
+
+            $('#TotalPrice').text(TotalPrice);
+        });
+
 
 
 
