@@ -250,7 +250,7 @@
                                 <tr>
                                     <td class="header" id="CupDisplay">CUP</td>
                                     <td class="header" id="CupVolDisplay">0</td>
-                                    <td class="header" id="CupPriceDisplay">0.00</td>
+                                 <td class="header" id="CupPriceDisplay">0.00</td>
                                 </tr>
 
                                 <tr>
@@ -291,7 +291,7 @@
                         </div>
                         <div class="input-number" id="AmountInserted" style="">
                             <div class="money-sign">₱</div>
-                            <div class="money-amount">0.00</div>
+                            <div class="money-amount">40.00</div>
                         </div>
                     </div>
                 </div>
@@ -579,9 +579,11 @@
 
 
     function suggestLiquidDetergentAmoundForStained() {
-        var product_name = $('#productName3').text();
+        var product_name3 = $('#productName3').text();
         var laundry_load = $('#kiloCounter').text();
         var stain_level = $('#selectedStain').text();
+
+        $('.ProductDisplay').text(product_name3);
 
         $('#stain_level').text(stain_level);
         $('#laundry_load').text(laundry_load);
@@ -854,7 +856,7 @@
         //PAGE 4_5: Suggest Amount of Liquid Detergent
         $('#YesLDAmount').on('click', function() {
             var reco_vol = $('#reco_ld').text();
-            var laundry_load = $('#laundry_load').text();
+            var laundry_load = $('#laundry_load').text(); 
 
             $('.VolumeDisplay').text(reco_vol);
             if(reco_vol == "60ml"){
@@ -872,7 +874,6 @@
             else if(reco_vol == "205ml"){
                 $('.PriceDisplay').text(product_205ml);
             }
-
 
             document.getElementById('page7').scrollIntoView({ behavior: 'smooth' });
         });
