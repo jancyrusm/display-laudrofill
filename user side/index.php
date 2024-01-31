@@ -124,15 +124,15 @@
                 <div class="frame_1"> 
                     <div>
                         <div class="box" id="product1"> </div>
-                        <p id="productName1">Tide</p>
+                        <p id="productName1"></p>
                     </div>
                     <div>
                         <div class="box" id="product2"> </div>
-                        <p id="productName2">Surf</p>
+                        <p id="productName2"></p>
                     </div>
                     <div>
                         <div class="box" id="product3"> </div>
-                        <p id="productName3">Ariel</p>
+                        <p id="productName3"></p>
                     </div>
                 </div>
             </div>
@@ -443,9 +443,10 @@
 
     function collectAllData() {
 
+
         product1_name = 'TIDE';
         product2_name = 'ARIEL';
-        product3_name = 'SURF';
+        product3_name = 'OxiClean'; // for special 
         product4_name = 'CUP';
         product_cupsize = '12oz';
 
@@ -462,28 +463,56 @@
         product_185ml_rate = 6470;
         product_205ml_rate = 7060;
 
+        // product1_name = null;
+        // product2_name = null;
+        // product3_name = null; 
+        // product4_name = null;
+        // product_cupsize = null;
 
-        $.ajax({
-            url:'php/getUserData.php',
-            type: 'GET',
-            data: {
-                tagged:"collectAllData"
-            },
-            success: function(res){
-                console.log();
+        // product_60ml =  null;
+        // product_80ml =  null;
+        // product_125ml = null;
+        // product_185ml = null;
+        // product_205ml = null;
+        // product_cupPrice = null;
+
+        // product_60ml_rate =  null;
+        // product_80ml_rate =  null;
+        // product_125ml_rate = null;
+        // product_185ml_rate = null;
+        // product_205ml_rate = null;
+
+
+        // $.ajax({
+        //     url:'php/getUserData.php',
+        //     type: 'GET',
+        //     data: {
+        //         tagged:"collectAllData"
+        //     },
+        //     success: function(res){
+        //         console.log(res);
                 
-                product1_name = 'TIDE';
-                product2_name = 'ARIEL';
-                product3_name = 'SURF';
+        //         product1_name = 'TIDE';
+        //         product2_name = 'ARIEL';
+        //         product3_name = 'Oxi Clean'; // for special 
+        //         product4_name = 'CUP';
+        //         product_cupsize = '12oz';
 
-                product_60ml = '10.00';
-                product_80ml = '15.00';
-                product_125ml = '20.00';
-                product_185ml = '25.00';
-                product_205ml = '30.00';
+        //         product_60ml = '10.00';
+        //         product_80ml = '15.00';
+        //         product_125ml = '20.00';
+        //         product_185ml = '25.00';
+        //         product_205ml = '30.00';
+        //         product_cupPrice = '5.00';
+
+        //         product_60ml_rate = 2120;
+        //         product_80ml_rate = 2820;
+        //         product_125ml_rate = 4410;
+        //         product_185ml_rate = 6470;
+        //         product_205ml_rate = 7060;
              
-            }
-        });
+        //     }
+        // });
     }
 
     function startLaundrofill() {
@@ -550,6 +579,7 @@
 
 
     function suggestLiquidDetergentAmoundForStained() {
+        var product_name = $('#productName3').text();
         var laundry_load = $('#kiloCounter').text();
         var stain_level = $('#selectedStain').text();
 
@@ -812,6 +842,7 @@
         //Page 3_5: Use Laundry Detergent for Stain
         $('#YesStrongLD').on('click', function() {
 
+
             suggestLiquidDetergentAmoundForStained();
             document.getElementById('page4_5').scrollIntoView({ behavior: 'smooth' });
         });
@@ -891,7 +922,7 @@
         });
 
         $('#cancelCollecting').on('click',function(){
-            window.location.href = "index.html";
+            window.location.href = "index.php";
         });
 
 
@@ -900,7 +931,7 @@
             // code the saving of the transactions
             
             
-            window.location.href = "index.html";
+            window.location.href = "index.php";
         });
 
 
