@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <title> User </title>
 </head>
 <body>
@@ -92,7 +92,7 @@
 
         <!-- Page 3_5: Did they brought a cup? -->
         <div class="page" id="page3_5" style="background-color: #404040;">
-            <div class="frame" style="display:flex; flex-direction: column;">
+            <div class="frame" style="display:flex; flex-direction: column; margin:30px;">
                 <div class="input-title" style="display: flex; justify-content:center; align-items:center;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16" style="color:#fff; margin:0 40px;">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
@@ -103,7 +103,7 @@
                     </div>
                     
                 </div>
-                <div class="content-cont" style="display:flex; flex-direction: row; justify-content: space-around;">
+                <div class="content-cont" style="display:flex; flex-direction: row; justify-content: space-around; margin:30px;">
                     <div class="option-cont btn btn-default" id="YesStrongLD">Yes</div>
                     <div class="option-cont btn btn-default" id="NoStrongLD">No</div>
                 </div>  
@@ -181,13 +181,13 @@
         <!-- Page 5: select liquid detergent -->
         <div class="page" id="page5">
             <div class="frame" style="padding: 10px;">
-                <div class="top-frame_1" style="display: flex; width:100%; justify-content: space-between;">
-                    <div class="top-buttons">
+                <div class="top-frame_1" style="display: flex; width:100%; justify-content: center;">
+                    <!-- <div class="top-buttons">
                         <svg xmlns="http://www.w3.org/2000/svg" width="118" height="100" viewBox="0 0 118 100" fill="none">
                             <rect width="118" height="100" rx="30" fill="#989898"/>
                             <path d="M15.4645 46.4645C13.5118 48.4171 13.5118 51.5829 15.4645 53.5355L47.2843 85.3553C49.2369 87.308 52.4027 87.308 54.3553 85.3553C56.308 83.4027 56.308 80.2369 54.3553 78.2843L26.0711 50L54.3553 21.7157C56.308 19.7631 56.308 16.5973 54.3553 14.6447C52.4027 12.692 49.2369 12.692 47.2843 14.6447L15.4645 46.4645ZM94.0267 55C96.7881 55 99.0267 52.7614 99.0267 50C99.0267 47.2386 96.7881 45 94.0267 45V55ZM19 55H94.0267V45H19V55Z" fill="#D9D9D9"/>
                         </svg>
-                    </div>
+                    </div> -->
                     <div class="title-cont">
                         <center>
                         <p class="header"> Product Selected: <span id="ProductNameDisplay" class="ProductDisplay"></span> </p>
@@ -196,7 +196,7 @@
                     </div>
                     <div></div>
                 </div>
-                <div class="frame_1" style="gap:20px;"> 
+                <div class="frame_1" style="width:100%; overflow-x:auto;"> 
                     <div>
                         <div class="box" id="volume1"> </div>
                         <p id="prod_vol1"> 60ml </p>
@@ -289,9 +289,9 @@
                         <div class="input-title" >
                             <p style="font-size:65px;">Amount Inserted</p>
                         </div>
-                        <div class="input-number" id="AmountInserted" style="padding:140px 0;">
+                        <div class="input-number" id="AmountInserted" style="">
                             <div class="money-sign">₱</div>
-                            <div class="money-amount">20.00</div>
+                            <div class="money-amount">0.00</div>
                         </div>
                     </div>
                 </div>
@@ -943,5 +943,331 @@
 
 
 </script>
+
+<style>
+
+body {
+    /* overflow: hidden; */
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(fonts/Inter.ttf);
+}
+
+.container {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #bbbbbb;
+    align-items: center;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+}
+
+.maint-title-cont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-around;
+}
+
+#mainTitle {
+    font-size: 100px;
+    letter-spacing: 10px;
+    width: 100%;
+}
+
+.header {
+    color: #404040;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cont {
+    font-family: Inter;
+}
+
+.subtitle {
+    color: #404040;
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.frame_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* gap: 158px; */
+}
+
+.frame_1,
+p {
+    color: #404040;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+.frame_1+div {
+    width: 242px;
+    height: 307px;
+}
+
+.box {
+    width: 250px;
+    height: 200px;
+    border-radius: 30px;
+    background: #404040;
+    transition: width 0.3s, height 0.3s;
+    cursor: pointer;
+    margin: 0 30px;
+}
+
+.laundryInfo {
+    margin-left: 36px;
+    font-size: 32px;
+}
+
+.button {
+    color: white;
+}
+
+.burger {
+    margin-top: 24px;
+    display: grid;
+    grid-row-gap: 20px;
+}
+
+input[type=button] {
+    height: 72px;
+    width: 90%;
+    font-size: 32px;
+    display: block;
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: linear 0.3s;
+}
+
+.burger input:hover {
+    scale: 102%;
+    color: #161616;
+    transition: linear 0.3s;
+    /* box-shadow: 1px 4px 8px #404040; */
+}
+
+.box:hover {
+    width: 300px;
+    height: 260px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* products */
+
+.top-frame_1 {
+    width: 100%;
+    display: flex;
+
+}
+
+
+.big-box {
+    width: 95%;
+    height: 563px;
+    border-radius: 30px;
+    background: #404040;
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+}
+
+.input-number {
+    width: 100%;
+    height: 80%;
+    /* border: 1px solid black; */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+}
+
+.input-number-buttons {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.input-title {
+    width: 100%;
+    text-align: center;
+}
+
+.input-title p {
+    color: #fff;
+    font-size: 38px;
+}
+
+.number-arrow {
+    width: 100%;
+    /* height: 50%; */
+    /* border: 1px solid black; */
+}
+
+.cont {
+    width: 50%;
+    height: 100%;
+}
+
+#cont1 {
+    width: 50%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#cont2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.cont-button {
+    padding: 30px;
+}
+
+.cont-button input[type=button]{
+    margin: 20px;
+}
+
+/* .cont-button input[type=button]:hover{
+    transform: scale(1.1);
+} */
+
+.cont-header {
+    /* padding:65px; */
+}
+
+.cont-header p {
+    text-align: start;
+    font-size: 55px;
+}
+
+/* .content-cont {
+    width: 100%;
+} */
+
+.option-cont {
+    width: 300px;
+    height: 200px;
+    border-radius: 30px;
+    background: #bbbbbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+    color: #fff;
+    /* margin: 100px; */
+    transition: linear 0.3s;
+}
+
+.option-cont:hover {
+    width: 310px;
+    height: 210px;
+    
+}
+
+.content-cont {
+    width: 100%;
+}
+
+#progress-container {
+    width: 60%;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    height: 30px;
+    position: relative;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4CAF50;
+}
+
+#progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+}
+
+#ld_suggest {
+    font-size: 60px;
+    margin: 20px 0;
+}
+
+#restartTransaction {
+    cursor: pointer;
+}
+
+#startLoading {
+    cursor: pointer;
+}
+
+
+
+</style>
+
+
 </html>
 

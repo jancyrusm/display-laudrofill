@@ -103,21 +103,29 @@ function collectAllData($conn){
     if (!$stmt->execute()) {
         die("Query failed: " . $stmt->error);
     }
+    else {
 
-    $stmt->bind_result(
-        $ProductBrand,
-        $vol60,
-        $vol80,
-        $vol125,
-        $vol185,
-        $vol205
-    );
+        $data = array();
 
-    while ($stmt->fetch()) {
-        // Handle each row of data as needed
-        // Example:
-        echo "Product Brand: $ProductBrand, vol60: $vol60, vol80: $vol80, vol125: $vol125, vol185: $vol185, vol205: $vol205<br>";
+        while ($stmt->fetch()) {
+            $row = array(
+                'ProductBrand' => $ProductBrand,
+                'vol60' => $vol60,
+                'vol80' => $vol80,
+                'vol125' => $vol125,
+                'vol185' => $vol185,
+                'vol205' => $vol205
+            );
+    
+            $data[] = $row;
+        }
+    
+        $stmt->close();
+    
+        return json_encode($data);
     }
+    
+    echo collectAllData($conn);
 
     
     $stmt->close();
