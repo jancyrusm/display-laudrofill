@@ -1,0 +1,218 @@
+:root {
+    --font-color: #404040;
+    --font-color-light: #C5C5C5;
+    --btn-color-main: #C5C5C5;
+    --btn-color-hover: #404040;
+
+    --box-bg-color-main: #C5C5C5;
+    --box-bg-color-hover: #404040;
+    --box-color-hover: #fff;
+    --font-color-label: #696969;
+
+
+    --font-size: 35px;
+}
+
+body {
+    font-size: var(--font-size);
+}
+
+.hidden {
+    display: none;
+}
+.card-header .main-header {
+    font-size: 70px;
+    font-weight: bold;
+    align-items: center;
+    letter-spacing:20px;
+    color: var(--font-color);
+}
+
+.card-header .sub-header {
+    font-size: 40px;
+    font-weight: bold;
+    align-items: center;
+    color: var(--font-color);
+}
+
+
+.card-body {
+    width: 100%;
+    height: auto;
+
+
+}
+
+.form-group table {
+    font-weight: bold;
+    color: var(--font-color);
+}
+.form-group .table-login input {
+    font-size: var(--font-size);
+    font-weight: bold;
+    color: var(--font-color);
+}
+
+.card-form {
+    padding: 0 20px;
+}
+
+.table-login tr td {
+    padding: 15px
+}
+
+button {
+    width: 20%;
+    font-weight: bold;
+    background-color: var(--btn-color-main);
+    border-color: var(--btn-color-hover);
+    color: var(--font-color);
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+button:hover {
+    background-color: var(--btn-color-hover);
+    color: var(--font-color-light);
+}
+
+.box {
+    background-color: var(--box-bg-color-main);
+    color: var(--box-color-main);
+    width: 80%;
+    height: 25vh;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    transition: box-shadow 0.3s ease;
+}
+.box span {
+    font-size: 20px;
+}
+
+.box:hover {
+    background-color: var(--box-bg-color-hover);
+    color: var(--box-color-hover);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-group .table-form {
+    font-size: 25px;
+}
+
+.form-group .table-form input,
+.form-group .table-form select {
+    font-size: 25px;
+}
+
+
+.table-form tr td {
+    padding: 10px;
+}
+
+.form-group .table-table input,
+.form-group .table-table label
+{
+    font-size: 25px;
+}
+
+.table-table tr td {
+    padding: 10px;
+}
+
+.table tr th {
+    font-size: 15px;
+}
+.table tr td {
+    font-size: 15px;
+    font-weight: 50;
+}
+
+.btn_back {
+    width: 100%;
+    /* border-radius: 50px; */
+    font-weight: bold;
+    font-size: 25px;
+    margin: 7px;
+}
+
+.box-m {
+    background-color: #c5c5c5;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fgr {
+    font-size: 30px;
+    margin: 0 0 0 10%;
+}
+
+.fgr input[type="number"] {
+    height: 25vh;
+    font-size: 70px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.progress-bar-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.progress {
+    height: 30px;
+}
+.progress-bar {
+    transition: width 10s linear;
+}
+
+
+
+.stop-container {
+    border:1px solid black; 
+    padding:10px; 
+    background-color:#C5C5C5;
+}
+
+.stop-container button {
+    background-color: #EEEAEA;
+}
+
+.fg-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40vh;
+}
+
+.tran-input input[type="text"] {
+    font-weight: bold;
+    font-size: 29px;
+}
+
+.tran-input label {
+    color: var(--font-color-label);
+}
+
+.fgr-message {
+    gap: 10px;
+    padding: 0 0 0 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.fgr-message label, .fgr-message span {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
