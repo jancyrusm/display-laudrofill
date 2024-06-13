@@ -270,10 +270,9 @@ function enableDispenseButton() {
         console.log(customer_payment);
         val_change.val(customer_payment.toFixed(2)); 
         $("#btn_dispense_trans").removeClass('hidden');
-    } else {
-        // $(".nrTran_change").val("Insufficient payment");
-        val_customer_payment.val("");
     }
+
+    console.log("change: " + change);
 }
 
 // FOR COMPUTING THE CHANGE
@@ -284,7 +283,7 @@ function changeComputation() {
     if(payment >= price){
         var change = payment - price; 
         val_change.val(change.toFixed(2));
-        pageSelected("p_dispensing");
+       
     } else {
         val_change.val("Insufficient payment");
     }
@@ -412,6 +411,8 @@ function getCoinInsertedValue() {
         console.log("Coin inserted: " + coinValue);
         //document.getElementById('coinValue').innerText = 'Coin inserted: ' + coinValue;
         val_customer_payment.val(coinValue);
+        enableDispenseButton();
+        
     });
 }
 
@@ -552,7 +553,8 @@ $(document).ready(function() {
     });
 
     $("#btn_dispense_trans").on('click', function() {
-        changeComputation();
+        sendValue("1");
+        pageSelected("p_dispensing");
     });
     
 
@@ -582,6 +584,8 @@ $(document).ready(function() {
         console.log("fabric: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
         pageSelected("p_stain");
+
+        sendValue("1");
     });
 
     $("#btn_fabric_name2").on('click', function() {
@@ -589,6 +593,8 @@ $(document).ready(function() {
         console.log("fabric: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
         pageSelected("p_stain");
+
+        sendValue("2");
     });
 
     $("#btn_fabric_name3").on('click', function() {
@@ -596,6 +602,8 @@ $(document).ready(function() {
         console.log("fabric: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
         pageSelected("p_stain");
+
+        sendValue("3");
     });
 
     //PAGE: SELECT LEVEL OF STAIN
@@ -604,6 +612,8 @@ $(document).ready(function() {
         console.log("stain: " + selected_stain);
         val_selected_stain.val(selected_stain);
         pageSelected("p_suggest");
+
+        sendValue("1");
     });
 
     $("#btn_stain_name2").on('click', function() {
@@ -611,6 +621,8 @@ $(document).ready(function() {
         console.log("stain: " + selected_stain);
         val_selected_stain.val(selected_stain);
         pageSelected("p_suggest");
+
+        sendValue("2");
     });
 
     $("#btn_stain_name3").on('click', function() {
@@ -618,6 +630,8 @@ $(document).ready(function() {
         console.log("stain: " + selected_stain);
         val_selected_stain.val(selected_stain);
         pageSelected("p_suggest");
+
+        sendValue("3");
     });
 
 
@@ -627,6 +641,8 @@ $(document).ready(function() {
         // selected_product = $("#product_name1").text();
         // console.log("product:" + selected_product);
         // val_selected_stain.val(selected_product);
+
+        sendValue("1");
     });
 
     $("#sd_NO").on('click', function() {
@@ -636,6 +652,8 @@ $(document).ready(function() {
         // selected_product = $("#product_name1").text();
         // console.log("product:" + selected_product);
         // val_selected_stain.val(selected_product);
+
+        sendValue("2");
     });
 
 
