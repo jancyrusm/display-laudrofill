@@ -1,3 +1,5 @@
+//const { load } = require("mime");
+
 //VARIABLES
 var splash              = $("#splash");
 var main                = $("#main");
@@ -8,7 +10,7 @@ var p_product           = $("#p_product");
 var p_fabric            = $("#p_fabric");
 var p_stain             = $("#p_stain");
 var p_suggest           = $("#p_suggest");
-var p_b_transaction       = $("#p_b_transaction");
+var p_b_transaction     = $("#p_b_transaction");
 var p_transaction       = $("#p_transaction");
 var p_dispensing        = $("#p_dispensing");
 var p_finish            = $("#p_finish");
@@ -22,6 +24,7 @@ var product_name3 = "Breeze (scent)";
 var volume_name1 = "60ml";
 var volume_name2 = "120ml";
 var volume_name3 = "180ml";
+var volume_name4 = "240ml";
 
 var fabric_name1 = "100% Cotton";
 var fabric_name2 = "Polyester";
@@ -31,17 +34,20 @@ var stain_name1 = "LOW";
 var stain_name2 = "MEDIUM";
 var stain_name3 = "HIGH";
 
-var price_prod1_vol1 = "11.00";
-var price_prod1_vol2 = "21.00";
-var price_prod1_vol3 = "31.00";
+var price_prod1_vol1 = "7.00";
+var price_prod1_vol2 = "13.00";
+var price_prod1_vol3 = "19.00";
+var price_prod1_vol4 = "25.00";
 
-var price_prod2_vol1 = "12.00";
-var price_prod2_vol2 = "22.00";
-var price_prod2_vol3 = "32.00";
+var price_prod2_vol1 = "7.00";
+var price_prod2_vol2 = "13.00";
+var price_prod2_vol3 = "19.00";
+var price_prod2_vol4 = "25.00";
 
-var price_prod3_vol1 = "13.00";
-var price_prod3_vol2 = "23.00";
-var price_prod3_vol3 = "33.00"; 
+var price_prod3_vol1 = "7.00";
+var price_prod3_vol2 = "13.00";
+var price_prod3_vol3 = "19.00"; 
+var price_prod2_vol4 = "25.00";
 
 
 
@@ -54,7 +60,8 @@ var selected_product = null;
 var total_price = null;
 var customer_payment = null;
 var laundry_load = null;
-var selected_fabric = null; 
+var selected_fabric = null;
+var selected_stain = null;
 
 var val_service_type        = $(".nrTran_service");
 var val_selected_volume     = $(".nrTran_volume");
@@ -87,9 +94,37 @@ function pageSelected(page) {
      // Show the selected section
      if (page === "splash") {
         splash.removeClass("hidden");
-    } else if (page === "main") {
+    } 
+    else if (page === "main") {
+
+        service_type = null;
+        selected_volume = null;
+        selected_product = null;
+        total_price = null;
+        customer_payment = null;
+        laundry_load = null;
+        selected_fabric = null;
+        selected_stain = null;
+        
         main.removeClass("hidden");
-    } else if (page === "normal_refill") {
+
+        $("#main_normal_refill").on('click', function() {
+            pageSelected("normal_refill");
+            service_type = "Normal Refill";
+            val_service_type.val(service_type);
+            console.log("service: " + service_type);
+            sendValue("1"); //SERIAL MONITOR
+        });
+
+        $("#main_smart_dispense").on('click', function() {
+            pageSelected("smart_dispense");
+            service_type = "Smart Dispense";
+            val_service_type.val(service_type);
+            console.log("service: " + service_type);
+            sendValue("2"); //SERIAL MONITOR
+        });
+    } 
+    else if (page === "normal_refill") {
         normal_refill.removeClass("hidden");
     } else if (page === "smart_dispense") {
         smart_dispensing.removeClass("hidden");
@@ -102,7 +137,10 @@ function pageSelected(page) {
     } else if (page === "p_stain") {
         p_stain.removeClass("hidden");
     } else if (page === "p_suggest") {
+
+        smartVolumeSuggest();
         p_suggest.removeClass("hidden");
+
     } else if (page === "p_b_transation") {
         p_b_transaction.removeClass("hidden");
     }
@@ -116,7 +154,8 @@ function pageSelected(page) {
         p_dispensing.removeClass("hidden");
         setTimeout(function() {
             dispenseLoading();
-        }, 3000);
+        }, 1000);
+        
     } else if (page === "p_finish") {
         p_finish.removeClass("hidden");
     }
@@ -143,6 +182,7 @@ function loadAllData() {
     $("#volume_name1").text(volume_name1);
     $("#volume_name2").text(volume_name2);
     $("#volume_name3").text(volume_name3);
+    $("#volume_name4").text(volume_name4);
 
     $("#product_name1").text(product_name1);
     $("#product_name2").text(product_name2);
@@ -162,36 +202,62 @@ function loadAllData() {
 }
 
 function getUnitPrice() {
-    
+
     var volume = $(".nrTran_volume").val();
     var product = $(".nrTran_product").val();
 
     var price;
-
+    
+    // product 1
     if(volume === volume_name1 && product === product_name1) {
         price = price_prod1_vol1;
-    } else if(volume === volume_name2 && product === product_name1) {
+    } 
+    else if(volume === volume_name2 && product === product_name1) {
         price = price_prod1_vol2;
-    } else if(volume === volume_name3 && product === product_name1) {
+    } 
+    else if(volume === volume_name3 && product === product_name1) {
         price = price_prod1_vol3;
-    } else if(volume === volume_name1 && product === product_name2) {
+    }
+    else if(volume === volume_name4 && product === product_name1) {
+        price = price_prod1_vol4;
+    }
+
+    // product 2
+    else if(volume === volume_name1 && product === product_name2) {
         price = price_prod2_vol1;
-    } else if(volume === volume_name2 && product === product_name2) {
+    } 
+    else if(volume === volume_name2 && product === product_name2) {
         price = price_prod2_vol2;
-    } else if(volume === volume_name3 && product === product_name2) {
+    } 
+    else if(volume === volume_name3 && product === product_name2) {
         price = price_prod2_vol3;
-    } else if(volume === volume_name1 && product === product_name3) {
+    }
+    else if(volume === volume_name4 && product === product_name2) {
+        price = price_prod2_vol4;
+    }
+
+    // product 3
+    else if(volume === volume_name1 && product === product_name3) {
         price = price_prod3_vol1;
-    } else if(volume === volume_name2 && product === product_name3) {
+    } 
+    else if(volume === volume_name2 && product === product_name3) {
         price = price_prod3_vol2;
-    } else if(volume === volume_name3 && product === product_name3) {
+    } 
+    else if(volume === volume_name3 && product === product_name3) {
         price = price_prod3_vol3;
-    } else {
+    } 
+    else if(volume === volume_name4 && product === product_name3) {
+        price = price_prod3_vol4;
+    } 
+
+    else {
         price = "N/A"; // Handle case where no match is found
     }
 
+    total_price = price;
+
     $(".nrTran_price").val(price);
-    console.log(price);
+    console.log("price: " + total_price);
 }
 
 function enableDispenseButton() {
@@ -201,11 +267,12 @@ function enableDispenseButton() {
     if(payment >= price){
         var change = payment - price;
         customer_payment = change;
-        console.log(customer_payment); 
+        console.log(customer_payment);
+        val_change.val(customer_payment.toFixed(2)); 
         $("#btn_dispense_trans").removeClass('hidden');
     } else {
         // $(".nrTran_change").val("Insufficient payment");
-        val_change.val("Insufficient payment");
+        val_customer_payment.val("");
     }
 }
 
@@ -221,119 +288,247 @@ function changeComputation() {
     } else {
         val_change.val("Insufficient payment");
     }
+
+    console.log("change: " + change);
 }
 
 function dispenseLoading() {
-    var $progressBar = $('#progress-bar');
-    $progressBar.css('width', '0%');
 
-    setTimeout(function() {
-        $progressBar.css('width', '100%').attr('aria-valuenow', 100);
-    }, 0);
+    var timeDelay = 1000; // Default to 10 seconds if no match
+    var finalTime = null;
 
+    if (selected_volume === volume_name1) {
+        timeDelay = 5170;
+        finalTime = timeDelay + 4000;
+    } 
+    else if (selected_volume === volume_name2) {
+        timeDelay = 10260;
+        finalTime = timeDelay + 4000;
+    } 
+    else if (selected_volume === volume_name3) {
+        timeDelay = 15420;
+        finalTime = timeDelay + 4000;
+    }
+    else if (selected_volume === volume_name4) {
+        timeDelay = 20580;
+        finalTime = timeDelay + 4000;
+    }
+
+    // Change the page after the time delay
     setTimeout(function() {
         pageSelected("p_finish");
-    }, 10000); // 10 seconds
+    }, finalTime);
 }
 
 
+function smartVolumeSuggest() {
+
+    if(selected_stain === "LOW" && selected_fabric === "100% Cotton"){
+
+        // Example : 60ml
+        selected_volume = $("#volume_name1").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "LOW" && selected_fabric === "Polyester"){
+        
+        // Example : 60ml
+        selected_volume = $("#volume_name1").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "LOW" && selected_fabric === "Cotton-Polyester Blend"){
+        
+        // Example : 60ml
+        selected_volume = $("#volume_name1").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "MEDIUM" && selected_fabric === "100% Cotton"){
+        // Example : 120ml
+        selected_volume = $("#volume_name2").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "MEDIUM" && selected_fabric === "Polyester"){
+        // Example : 120ml
+        selected_volume = $("#volume_name2").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "MEDIUM" && selected_fabric === "Cotton-Polyester Blend"){
+        // Example : 120ml
+        selected_volume = $("#volume_name3").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "HIGH" && selected_fabric === "100% Cotton"){
+        // Example : 180ml
+        selected_volume = $("#volume_name3").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "HIGH" && selected_fabric === "Polyester"){
+        // Example : 180ml
+        selected_volume = $("#volume_name3").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    else if(selected_stain === "HIGH" && selected_fabric === "Cotton-Polyester Blend"){
+        // Example : 180ml
+        selected_volume = $("#volume_name3").text();
+        console.log("service:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+    }
+
+    $("#ps_fabric").text(selected_fabric);
+    $("#ps_stain").text(selected_stain);
+    $("#ps_volume").text(selected_volume);
 
 
+}
+
+
+// //////////////////////////////////////////////////////////////////////////////////////
+
+var socket = io();
+
+function sendValue(value) {
+    socket.emit('sendValue', value);
+    console.log("Serial Input: " + value);
+}
+
+var coinInserted;
+function getCoinInsertedValue() {
+    socket.on('coinInserted', function(coinValue) {
+        console.log("Coin inserted: " + coinValue);
+        //document.getElementById('coinValue').innerText = 'Coin inserted: ' + coinValue;
+        val_customer_payment.val(coinValue);
+    });
+}
+
+function handleSerialData(data) {
+    // Process the serial data here
+    console.log("Handling serial data: " + data);
+    // You can add more logic to handle the received data
+}
+
+// //////////////////////////////////////////////////////////////////////////////////////
 
 
 
 $(document).ready(function() {
 
+    
     loadAllData(); 
 
     //PAGE 1: SPLASH SCREEN
     pageSelected("splash");
     setTimeout(function() {
         pageSelected("main");
+        sendValue("L"); //SERIAL MONITOR
     }, 1000);
 
+    // for getting the value from the serial monitor
+    getCoinInsertedValue();
 
     //BACK BUTTON
     $(".btn_back").on('click', function() {
         pageSelected("main");
     });
 
-
-    //PAGE 2: MAIN (Normal Refill of Smart Dispense)
-    $("#main_normal_refill").on('click', function() {
-        pageSelected("normal_refill");
-        service_type = "Normal Refill";
-        console.log(service_type);
-        sendValue("1");
-    });
-
-    $("#main_smart_dispense").on('click', function() {
-        pageSelected("smart_dispense");
-        service_type = "Smart Dispense";
-        console.log(service_type);
-        sendValue("2");
-    });
-
-
-
-    /*
-        Take Notes:
-
-        - The Type of Service must determine the whole transaction.
-    */
-
     //PAGE: Normal Refill 
     $("#nr_start").on('click', function() {
         pageSelected("p_volume");
         val_service_type.val(service_type);
+        laundry_load = val_laundry_load.val();
+        value = laundry_load;
+        
+        //sendValue(value); //SERIAL MONITOR
     });
 
     //PAGE: SELECT VOLUME
     $("#btn_volume_name1").on('click', function() {
-        pageSelected("p_product");
+
         selected_volume = $("#volume_name1").text();
-        console.log("service:" + selected_volume);
+        console.log("product:" + selected_volume);
         val_selected_volume.val(selected_volume);
+
+        sendValue("1"); //SERIAL MONITOR
+        pageSelected("p_product");
     });
 
     $("#btn_volume_name2").on('click', function() {
-        pageSelected("p_product");
+
         selected_volume = $("#volume_name2").text();
-        console.log("service:" + selected_volume);
-        val_selected_volume.val(selected_volume);      
+        console.log("product:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+
+        sendValue("2"); //SERIAL MONITOR
+        pageSelected("p_product");   
     });
 
     $("#btn_volume_name3").on('click', function() {
-        pageSelected("p_product");
+
         selected_volume = $("#volume_name3").text();
-        console.log("service:" + selected_volume);
+        console.log("product:" + selected_volume);
         val_selected_volume.val(selected_volume);
+
+        sendValue("3"); //SERIAL MONITOR
+        pageSelected("p_product");
+
+    });
+
+    $("#btn_volume_name4").on('click', function() {
+
+        selected_volume = $("#volume_name4").text();
+        console.log("product:" + selected_volume);
+        val_selected_volume.val(selected_volume);
+
+        sendValue("4"); //SERIAL MONITOR
+        pageSelected("p_product");
+
     });
 
 
     //PAGE: SELECT PRODUCT
     $("#btn_product_name1").on('click', function() {
-        pageSelected("p_b_transation");
         selected_product = $("#product_name1").text();
         console.log("product:" + selected_product);
         val_selected_product.val(selected_product);
         getUnitPrice();
+
+        sendValue("1"); //SERIAL MONITOR
+        pageSelected("p_b_transation");
     });
 
     $("#btn_product_name2").on('click', function() {
-        pageSelected("p_b_transation");
         selected_product = $("#product_name2").text();
         console.log("product:" + selected_product);
         val_selected_product.val(selected_product);
         getUnitPrice();
+
+        sendValue("2"); //SERIAL MONITOR
+        pageSelected("p_b_transation");
     });
 
     $("#btn_product_name3").on('click', function() {
-        pageSelected("p_b_transation");
+
         selected_product = $("#product_name3").text();
         console.log("product:" + selected_product);
         val_selected_product.val(selected_product);
         getUnitPrice();
+
+        sendValue("3"); //SERIAL MONITOR
+        pageSelected("p_b_transation");
     });
 
     ///////// FOR TRANSACTION INSERTING COIN //////////// 
@@ -345,6 +540,7 @@ $(document).ready(function() {
 
     $("#btn_cancel_trans").on('click', function() {
         var confirmation = confirm("Are you sure you want to cancel the transaction?");
+
         if (confirmation) {
             pageSelected("main");
         }
@@ -382,67 +578,68 @@ $(document).ready(function() {
 
     //PAGE: SELECT FABRIC
     $("#btn_fabric_name1").on('click', function() {
-        pageSelected("p_stain");
         selected_fabric = $("#fabric_name1").text();
-        console.log("fabric:" + selected_fabric);
+        console.log("fabric: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
+        pageSelected("p_stain");
     });
 
     $("#btn_fabric_name2").on('click', function() {
-        pageSelected("p_stain");
         selected_fabric = $("#fabric_name2").text();
-        console.log("fabric:" + selected_fabric);
+        console.log("fabric: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
+        pageSelected("p_stain");
     });
 
     $("#btn_fabric_name3").on('click', function() {
-        pageSelected("p_stain");
         selected_fabric = $("#fabric_name3").text();
-        console.log("fabric:" + selected_fabric);
+        console.log("fabric: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
+        pageSelected("p_stain");
     });
 
     //PAGE: SELECT LEVEL OF STAIN
     $("#btn_stain_name1").on('click', function() {
-        pageSelected("p_suggest");
         selected_stain = $("#stain_name1").text();
-        console.log("fabric:" + selected_stain);
+        console.log("stain: " + selected_stain);
         val_selected_stain.val(selected_stain);
+        pageSelected("p_suggest");
     });
 
     $("#btn_stain_name2").on('click', function() {
-        pageSelected("p_suggest");
         selected_stain = $("#stain_name2").text();
-        console.log("stain:" + selected_stain);
+        console.log("stain: " + selected_stain);
         val_selected_stain.val(selected_stain);
+        pageSelected("p_suggest");
     });
 
     $("#btn_stain_name3").on('click', function() {
-        pageSelected("p_suggest");
         selected_stain = $("#stain_name3").text();
-        console.log("stain:" + selected_stain);
+        console.log("stain: " + selected_stain);
         val_selected_stain.val(selected_stain);
+        pageSelected("p_suggest");
     });
+
+
+    //PAGE: SMART DISPENSE SUGGESTION
+    $("#sd_YES").on('click', function() {
+        pageSelected("p_product");
+        // selected_product = $("#product_name1").text();
+        // console.log("product:" + selected_product);
+        // val_selected_stain.val(selected_product);
+    });
+
+    $("#sd_NO").on('click', function() {
+        service_type = "Normal Refill";
+        val_service_type.val(service_type);
+        pageSelected("p_volume");
+        // selected_product = $("#product_name1").text();
+        // console.log("product:" + selected_product);
+        // val_selected_stain.val(selected_product);
+    });
+
+
+
 
 });
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-function sendValue(value) {
-    fetch('/send', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ value: value })
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-////////////////////////////////////////////////////////////////////////////////////

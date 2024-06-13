@@ -6,6 +6,9 @@
     <title>USER</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.google.com/specimen/Kumbh+Sans" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +20,7 @@
                <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                 </div>
                 <div class="card-body"></div>
@@ -36,7 +39,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>Type of Service</span>
@@ -78,10 +81,10 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
-                        <span>NORMAL REFILL</span>
+                        <span>Normal Refill</span>
                     </div>
                     
                 </div>
@@ -124,7 +127,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -162,6 +165,13 @@
                                         <span id="volume_name3" class="w-100 text-wrap">Volume 3</span>
                                     </div>
                                    </td>
+
+                                   <td class="w-25">
+                                    <div class="box" id="btn_volume_name4">
+                                        <span id="volume_name4" class="w-100 text-wrap">Volume 4</span>
+                                    </div>
+                                   </td>
+
                                 </tr>
                             </table>
                         </div>
@@ -180,7 +190,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -236,7 +246,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -248,30 +258,32 @@
                         <div class="form-group">
                             <table class="table-admin-main" style="width:100%;">
                                 <tr>
-                                    <td>
+                                    <td class="d-flex">
                                         <div class="fg-left">
-                                            <!-- Service -->
-                                            <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_service">Service: </label>
-                                                <input type="text" class="nrTran_service form-control" id="nrTran_service" readonly>
-                                            </div>
 
-                                            <!-- Volume -->
                                             <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_volume">Volume: </label>
-                                                <input type="text" class="nrTran_volume form-control" id="nrTran_volume" readonly>
-                                            </div>
-
-                                            <!-- Product -->
-                                            <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_product">Product: </label>
-                                                <input type="text" class="nrTran_product form-control" id="nrTran_product" readonly>
-                                            </div>
-
-                                            <!-- Price -->
-                                            <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_price">Price: </label>
-                                                <input type="text" class="nrTran_price form-control" id="nrTran_price" readonly>
+                                                <table id="nTrans_table">
+                                                    <tr>
+                                                        <!-- Service -->
+                                                        <td><label for="nrTran_service">Service: </label></td>
+                                                        <td><input type="text" class="nrTran_service form-control" id="nrTran_service" readonly></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <!-- Volume -->
+                                                        <td><label for="nrTran_volume">Volume: </label></td>
+                                                        <td><input type="text" class="nrTran_volume form-control" id="nrTran_volume" readonly></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <!-- Product -->
+                                                        <td><label for="nrTran_product">Product: </label></td>
+                                                        <td><input type="text" class="nrTran_product form-control" id="nrTran_product" readonly></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <!-- Price -->
+                                                        <td><label for="nrTran_price">Price: </label></td>
+                                                        <td><input type="text" class="nrTran_price form-control" style="text-align:right; font-weight:600;" id="nrTran_price" readonly></td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
                                     </td>
@@ -309,14 +321,14 @@
 
         <!-- PAGE 2.1 :Transaction Screen -->
         <div id="p_transaction" class="page hidden" style="width:100%; height:100vh;">
-            <div style="width: 100%; margin:auto;">
+            <!-- <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
-            </div>
+            </div> -->
             <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -328,39 +340,49 @@
                         <div class="form-group">
                             <table class="table-admin-main" style="width:100%;">
                                 <tr>
-                                    <td>
+                                    <td class="d-flex">
                                         <div class="fg-left">
-                                            <!-- Service -->
                                             <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_service">Service: </label>
-                                                <input type="text" class="nrTran_service form-control" id="nrTran_service" readonly>
-                                            </div>
-
-                                            <!-- Volume -->
-                                            <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_volume">Volume: </label>
-                                                <input type="text" class="nrTran_volume form-control" id="nrTran_volume" readonly>
-                                            </div>
-
-                                            <!-- Product -->
-                                            <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_product">Product: </label>
-                                                <input type="text" class="nrTran_product form-control" id="nrTran_product" readonly>
-                                            </div>
-
-                                            <!-- Price -->
-                                            <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
-                                                <label for="nrTran_price">Price: </label>
-                                                <input type="text" class="nrTran_price form-control" id="nrTran_price" readonly>
+                                                <table id="nTrans_table">
+                                                    <tr>
+                                                        <!-- Service -->
+                                                        <td><label for="nrTran_service">Service: </label></td>
+                                                        <td><input type="text" class="nrTran_service form-control" id="nrTran_service" readonly></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <!-- Volume -->
+                                                        <td><label for="nrTran_volume">Volume: </label></td>
+                                                        <td><input type="text" class="nrTran_volume form-control" id="nrTran_volume" readonly></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <!-- Product -->
+                                                        <td><label for="nrTran_product">Product: </label></td>
+                                                        <td><input type="text" class="nrTran_product form-control" id="nrTran_product" readonly></td>
+                                                    </tr>
+                                                    <tr>
+                                                         <!-- Price -->
+                                                        <td><label for="nrTran_price">Price: </label></td>
+                                                        <td><input type="text" class="nrTran_price form-control" style="text-align:right; font-weight:600;" id="nrTran_price" readonly></td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
                                     </td>           
                                     <td class="w-50">
                                         <div class="fg-right">
-                                            <div class="form-group fgr">
+                                            <div class="form-group fgr fgr-message">
                                                 <label for="nrTran_payment">Insert payment</label>
                                                 <input type="number" class="nrTran_payment form-control" id="nrTran_payment" >
+
+                                                <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
+                                                    <label for="nrTran_change">Change: </label>
+                                                    <input type="text" class="nrTran_change form-control" id="nrTran_change" placeholder="">
+                                                </div>
+                                                <div class="form-group d-flex align-items-center tran-input" style="font-size:30px;">
+                                                    <button id="btn_dispense_trans" style="width:100%;" class="hidden">DISPENSE</button>
+                                                </div>
                                             </div>
+                                            
 
                                             <!-- CHANGE -->
                                             <!-- <div class="form-group fgr d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
@@ -371,11 +393,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="text-align:right; padding:4% 0;">
-                                        <!-- <button id="btn_cancel_trans">CANCEL</button>
-                                        <button id="btn_proceed_trans" style="width:200px;">SUBMIT</button> -->
-                                        <button id="btn_dispense_trans" style="width:200px;" class="hidden">DISPENSE</button>
-                                    </td>
+                                    <!-- <td colspan="2" style="text-align:right; padding:4% 0;">
+                                        <button id="btn_cancel_trans">CANCEL</button>
+                                        <button id="btn_proceed_trans" style="width:200px;">SUBMIT</button>
+                                        <button id="btn_dispense_trans" style="width:10%;" class="hidden">DISPENSE</button>
+                                    </td> -->
                                 </tr>
                             </table>
                         </div>
@@ -387,14 +409,14 @@
 
         <!-- PAGE 2.1 :Dispensing -->
         <div id="p_dispensing" class="page hidden" style="width:100%; height:100vh;">
-            <div style="width: 100%; margin:auto;">
+            <!-- <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
-            </div>
+            </div> -->
             <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -409,10 +431,10 @@
                                     <td style="height:35vh;">
                                         <div class="container">
                                             <div class="progress-bar-container">
-                                                <span style="letter-spacing: 25px;">D I S P E N S I N G</span>
-                                                <div class="progress mt-3">
+                                                <span style="letter-spacing: 25px;">DISPENSING</span><span class="loading-dots"></span>
+                                                <!-- <div class="progress mt-3">
                                                     <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </td>
@@ -420,8 +442,8 @@
                                 <tr>
                                     <td>
                                         <div class="stop-container d-flex w-100">
-                                            <div style="width:70%;">
-                                                <span style="text-wrap:wrap; font-size:25px;">
+                                            <div class="sc-message" style="width:70%;">
+                                                <span style="text-wrap:wrap; font-size:25px; line-height: 1;">
                                                     Incase the dispensing overflows,  press the emergency stop.
                                                 </span>
                                             </div>
@@ -441,14 +463,14 @@
 
         <!-- PAGE 2.1 :FINISH -->
         <div id="p_finish" class="page hidden" style="width:100%; height:100vh;">
-            <div style="width: 100%; margin:auto;">
+            <!-- <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
-            </div>
+            </div> -->
             <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -487,10 +509,10 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
-                        <span>SMART DISPENSE</span>
+                        <span>Smart Dispense</span>
                     </div>
                     
                 </div>
@@ -537,7 +559,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -593,7 +615,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -640,7 +662,7 @@
             </div>
         </div>
 
-        <!-- PAGE 2.1 :STAIN OPTIONS -->
+        <!-- PAGE 2.2: SUGGEST VOLUME -->
         <div id="p_suggest" class="page hidden" style="width:100%; height:100vh;">
             <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
@@ -649,7 +671,7 @@
             <div class="card border" style="width:80%;">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span></span>
@@ -662,9 +684,11 @@
                             <table class="table-admin-main" style="width:100%;">
                                 <tr>
                                 <td class="w-25">
-                                    <div class="box-m" id="">
+                                    <div class="box-m" id="" style="padding: 10px 2%;">
                                         <span id="" class="w-100 text-wrap">
-                                            For this type of stained fabric, we suggest this volume of liquid detergent for better cleaning.
+                                            For a <span id="ps_fabric" class="sd-inputs"></span> type of fabric, 
+                                            with <span id="ps_stain" class="sd-inputs"></span> level of stain,
+                                            we suggest <span id="ps_volume" class="sd-inputs"></span> of liquid detergent for better cleaning.
                                         </span>
                                         <span id="" class="w-100 text-wrap" style="font-size:25px; color:#706E6E;">
                                             Do you want to proceed with the recommended volume?
