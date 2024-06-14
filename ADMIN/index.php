@@ -17,7 +17,7 @@
                <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                 </div>
                 <div class="card-body"></div>
@@ -62,7 +62,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                 </div>
                 <div class="card-body"></div>
@@ -115,7 +115,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>EDIT PRODUCTS</span>
@@ -163,7 +163,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>PRODUCT </span><span id="product_id"></span>
@@ -254,7 +254,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>TRANSACTION HISTORY</span>
@@ -322,7 +322,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>REPORTS</span>
@@ -347,6 +347,54 @@
                                     </div>
                                    </td>
 
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_reports_monitoring">
+                                        <span id="option_btn_reports_monitoring" class="w-100 text-wrap">MONITORING</span>
+                                    </div>
+                                   </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.4:   -->
+        <div id="page_monitoring" class="page hidden" style="width:100%; height:100vh;">
+            <div style="width: 100%; margin:auto;">
+                <button class="btn_back" style="width: 10%;" > < </button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span>REPORTS</span>
+                    </div>
+                    
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <table class="table-admin-main" style="width:100%;">
+                                <tr>
+                                <div class="progress">
+                                    <label class="product_name1">Product 1</label>
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="progress">
+                                    <label class="product_name2">Product 2</label>
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="progress">
+                                    <label class="product_name3">Product 3</label>  
+                                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+
                                 </tr>
                             </table>
                         </div>
@@ -364,7 +412,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span id="report_name"></span><span> REPORT</span> 
@@ -462,7 +510,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>SETTINGS</span>
@@ -504,7 +552,7 @@
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
-                        <span>LAUNDROFILL</span>
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
                     </div>
                     <div class="sub-header">
                         <span>ACCOUNT SETTINGS</span>

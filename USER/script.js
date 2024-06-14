@@ -422,6 +422,27 @@ function handleSerialData(data) {
     // You can add more logic to handle the received data
 }
 
+
+
+function saveTransaction(formData) {
+
+    $.ajax({
+        url: 'data.php', // Replace with your server endpoint
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            console.log('Success:', response);
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+        }
+    });
+
+}
+
 // //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -563,7 +584,20 @@ $(document).ready(function() {
 
 
     $("#btn_finish").on('click', function() {
-        location.reload();
+
+        var formData = new FormData();
+        formData.append('tagged', "saveTransaction");
+        formData.append('service_type', service_type);
+        formData.append('selected_volume', selected_volume);
+        formData.append('selected_product', selected_product);
+        formData.append('total_price', total_price);
+        formData.append('customer_payment', customer_payment);
+        formData.append('laundry_load', laundry_load);
+        formData.append('selected_fabric', selected_fabric);
+        formData.append('selected_stain', selected_stain);
+
+        saveTransaction(formData);
+       
     });
 
 

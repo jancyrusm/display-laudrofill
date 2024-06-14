@@ -13,6 +13,7 @@ var page_settings       = $("#page_settings");
 var page_products_edit  = $("#page_products_edit");
 var page_reports_table  = $("#page_reports_table");
 var page_account        = $("#page_account");
+var page_monitoring     = $("#page_monitoring");
 
 var modal_success = $("#modal_success");
 
@@ -39,6 +40,7 @@ function pageSelected(page){
     page_products_edit.addClass('hidden');   
     page_reports_table.addClass('hidden');   
     page_account.addClass('hidden');
+    page_monitoring.addClass('hidden');
     
     if (page === "login") {
         page_login.removeClass('hidden');
@@ -58,6 +60,8 @@ function pageSelected(page){
         page_reports_table.removeClass('hidden');
     } else if (page === "account") {
         page_account.removeClass('hidden');
+    } else if (page === "page_monitoring") {
+        page_monitoring.removeClass('hidden');
     }
 }
 
@@ -515,7 +519,6 @@ $('document').ready(function () {
         pageSelected('reports_table');
         $('#reports_inventory_card').addClass("hidden");
         $('#reports_sales_card').removeClass("hidden");
-        
     });
 
     $('#option_name_reports_inventory').on('click', function() {
@@ -523,10 +526,13 @@ $('document').ready(function () {
         pageSelected('reports_table');
         $('#reports_sales_card').addClass("hidden");
         $('#reports_inventory_card').removeClass("hidden");
-        
-
-
     });
+
+    $('#option_name_reports_monitoring').on('click', function() {
+        $("#report_name").text("MONITORING");
+        pageSelected('p_monitoring');
+    });
+    
 
     $("#reports_view").on('click', function() {
         var reportName = $("#report_name").text();
@@ -547,6 +553,8 @@ $('document').ready(function () {
             loadInventoryReportsTable(tran_from, tran_to);
         } 
     });
+
+/// HIIIIII NAG-UUPDATE KA BA?
 
     
 
