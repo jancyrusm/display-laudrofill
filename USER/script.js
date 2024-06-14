@@ -269,7 +269,8 @@ function enableDispenseButton() {
         customer_payment = change;
         console.log(customer_payment);
         val_change.val(customer_payment.toFixed(2)); 
-        $("#btn_dispense_trans").removeClass('hidden');
+        //$("#btn_dispense_trans").removeClass('hidden');
+        pageSelected("p_dispensing");
     }
 
     console.log("change: " + change);
