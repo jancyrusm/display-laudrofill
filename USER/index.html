@@ -16,11 +16,15 @@
 
         <!-- PAGE 1 : SPLASH SCREEN -->
         <div  id="splash" class="page " style="width:100%; height:100vh;">
-            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div style="width: 100%; margin:auto;">
+                <button class=" btn_exit_user"  id="btn_exit_user" style="width: 10%;" > x </button>
+            </div>
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:80vh;">
                <div class="card border">
                 <div class="card-header text-center">
-                    <div class="main-header">
-                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
+                    <div class="main-header" id="btn_main_header">
+                        <!-- <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span> -->
+                        <img src="../laundrofill-logo.png">
                     </div>
                 </div>
                 <div class="card-body"></div>
@@ -296,8 +300,8 @@
                                                     As you proceed, you won't be able to cancel the service
                                                 </span>
                                                 <div class="d-flex justify-content-between" style="margin: 5% 0px;">
-                                                    <button id="btn_cancel_trans" style="width:48%;">CANCEL</button>
-                                                    <button id="btn_proceed_trans" style="width:48%;">PROCEED</button>
+                                                    <!-- <button id="btn_cancel_trans" style="width:48%;">CANCEL</button>
+                                                    <button id="btn_proceed_trans" style="width:48%;">PROCEED</button> -->
                                                 </div>
                                             </div>
 
@@ -378,8 +382,9 @@
                                                     <label for="nrTran_change">Change: </label>
                                                     <input type="text" class="nrTran_change form-control" id="nrTran_change" placeholder="">
                                                 </div>
-                                                <div class="form-group d-flex align-items-center tran-input" style="font-size:30px;">
-                                                    <button id="btn_dispense_trans" style="width:100%;" class="hidden">DISPENSE</button>
+                                                <div class="form-group d-flex align-items-center tran-input" style="font-size:30px; gap:10px;">
+                                                    <button id="btn_cancel_trans" style="width:50%;" class="hidden">CANCEL</button>
+                                                    <button id="btn_dispense_trans" style="width:50%;" class="hidden">DISPENSE</button>
                                                 </div>
                                             </div>
                                             
@@ -441,7 +446,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div class="stop-container d-flex w-100">
+                                        <!-- <div class="stop-container d-flex w-100">
                                             <div class="sc-message" style="width:70%;">
                                                 <span style="text-wrap:wrap; font-size:25px; line-height: 1;">
                                                     Incase the dispensing overflows,  press the emergency stop.
@@ -450,7 +455,7 @@
                                            <div class="d-flex justify-content-center flex-column" style="width:30%;">
                                                 <button class="w-100">STOP</button>
                                            </div>
-                                        </div> 
+                                        </div>  -->
                                     </td>
                                 </tr>
                             </table>
@@ -483,7 +488,7 @@
                             <table class="table-admin-main" style="width:100%;">
                                 <tr>
                                     <td style="height: 50vh;">
-                                        <div class="stop-container d-flex w-100 justify-content-center align-items-center" id="btn_finish" style="height:20vh;">
+                                        <div class="btn_finish stop-container d-flex w-100 justify-content-center align-items-center" id="btn_finish" style="height:20vh;">
                                             <span style="text-wrap:wrap; font-size:25px; text-align:center;">
                                                 DONE!
                                             </span>
@@ -711,6 +716,68 @@
                             </table>
                         </div>
                     </div>
+                </div> 
+            </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- FORM TO SEND DATA -->
+        <div id="p_data" class="page" style="width:100%; height:100vh;">
+            <div style="width: 100%; margin:auto;">
+                <button class="btn_back" style="width: 10%;" > < </button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="card border" style="width:80%;">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span class="mh-left">LAUNDRO</span><span class="mh-right">FILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span></span>
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    <form id="laundroForm" action="data.php" method="POST"> 
+                        <div class="form-group">
+                            <label for="tagged">Tagged:</label>
+                            <input type="text" id="tagged" name="tagged" class="form-control"  value="saveTransaction">
+                        </div>
+                        <div class="form-group">
+                            <label for="service_type">Service Type</label>
+                            <input type="text" id="service_type" name="service_type" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selected_volume">Selected Volume</label>
+                            <input type="text" id="selected_volume" name="selected_volume" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="selected_product">Selected Product</label>
+                            <input type="text" id="selected_product" name="selected_product" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="total_price">Total Price</label>
+                            <input type="number" id="total_price" name="total_price" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="customer_payment">Customer Payment</label>
+                            <input type="number" id="customer_payment" name="customer_payment" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="laundry_load">Laundry Load</label>
+                            <input type="text" id="laundry_load" name="laundry_load" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="selected_fabric">Selected Fabric</label>
+                            <input type="text" id="selected_fabric" name="selected_fabric" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="selected_stain">Selected Stain</label>
+                            <input type="text" id="selected_stain" name="selected_stain" class="form-control" >
+                        </div>
+                        <button type="submit" class="btn_finish btn btn-primary">Submit</button>
+                    </form>
                 </div> 
             </div>
             </div>

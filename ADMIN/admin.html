@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <!-- PAGE 1 : LOGIN -->
+        <div  id="page_1" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+               <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <table class="table-login" style="width:100%;">
+                                <tr>
+                                    <td class="td-label">
+                                        <label for="login_username">Username: </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" id="login_username" placeholder="Username">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-label">
+                                        <label for="login_password">Password: </label>
+                                    </td>
+                                    <td>
+                                        <input type="password" class="form-control" id="login_password" placeholder="Password">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" class="">
+                                        <div class="btn-div text-right">
+                                            <button id="btn_login_exit">Exit</button>
+                                            <button id="btn_login">Login</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>   
+               </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2 : MAIN -->
+        <div id="page_2" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <table class="table-admin-main" style="width:100%;">
+                                <tr>
+                                    <!-- EDIT PRODUCTS -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Products">
+                                        <span id="option_name_Products" class="w-100 text-wrap">Edit Products</span>
+                                    </div>
+                                   </td>
+
+                                   <!-- Transaction History -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Transaction">
+                                        <span id="option_name_Transaction" class="w-100 text-wrap">Transaction History</span>
+                                    </div>
+                                   </td>
+
+                                   <!-- Reports -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Reports">
+                                        <span id="option_name_Reports" class="w-100 text-wrap">Reports</span>
+                                    </div>
+                                   </td>
+
+                                   <!-- Settings -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Settings">
+                                        <span id="option_name_Settings" class="w-100 text-wrap">Settings</span>
+                                    </div>
+                                   </td>
+                                   
+                                </tr>
+                            </table>
+                        </div>
+                    </div>   
+            </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.1 : EDIT PRODUCTS -->
+        <div id="page_3" class="page hidden" style="width:100%; height:85vh;">
+            <div style="width: 80%; margin: auto;">
+                <button id="btn_back" class="btn_back"> < </button>
+            </div>
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span>EDIT PRODUCTS</span>
+                    </div>
+                    
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <table class="table-admin-main" style="width:100%;">
+                                <tr>
+                                    <!--PRODUCTS -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Products_1">
+                                        <span id="option_name_Products_1" class="w-100 text-wrap">Product 1</span>
+                                    </div>
+                                   </td>
+
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Products_2">
+                                        <span id="option_name_Products_2" class="w-100 text-wrap">Product 2</span>
+                                    </div>
+                                   </td>
+
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_Products_3">
+                                        <span id="option_name_Products_3" class="w-100 text-wrap">Product 3</span>
+                                    </div>
+                                   </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>   
+            </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.1.1 : EDIT PRODUCTS FORM -->
+        <div id="page_4" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span>PRODUCT </span><span id="product_id">1</span>
+                    </div>
+                    
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <div class="row">
+                                <table class="table-form w-50">
+                                    <tr>
+                                        <td class="td-label">
+                                            <label for="login_username">Type: </label>
+                                        </td>
+                                        <td>
+                                            <select type="text" class="form-control" id="login_username" placeholder="Product Type">
+                                                <option value="Liquid Detergent">Liquid Detergent</option>
+                                                <option value="Fabric Conditioner" >Fabric Conditioner</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-label">
+                                            <label for="login_password">Name: </label>
+                                        </td>
+                                        <td>
+                                            <input type="password" class="form-control" id="login_password" placeholder="Product Name">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-label">
+                                            <label for="login_password">Desc: </label>
+                                        </td>
+                                        <td>
+                                            <input type="password" class="form-control" id="login_password" placeholder="Product Description">
+                                        </td>
+                                    </tr>
+                                </table>
+    
+                                <table class="table-form w-50">
+                                    <tr>
+                                        <td class="td-label">
+                                            <label for="login_username">Vol 1: </label>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" id="unit_price_1" placeholder="Unit Price 1">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-label">
+                                            <label for="login_username">Vol 2: </label>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" id="unit_price_2" placeholder="Unit Price 2">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-label">
+                                            <label for="login_username">Vol 3: </label>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" id="unit_price_3" placeholder="Unit Price 3">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="btn-div text-right" style="padding:30px 0;">
+                                <button>Cancel</button>
+                                <button>Edit</button>
+                                <button>Update</button>
+                            </div>
+                            
+
+
+                        </div>
+                    </div>   
+            </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.2: TRANSACTION -->
+        <div id="page_5" class="page " style="width:100%; height:100vh;">
+            <div style="width: 100%; margin:auto;">
+                <button class="btn_back" style="width: 10%;" > < </button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+                <div class="card border">
+                    <div class="card-header text-center">
+                        <div class="main-header">
+                            <span>LAUNDROFILL</span>
+                        </div>
+                        <div class="sub-header">
+                            <span>TRANSACTION HISTORY</span>
+                        </div>
+                        
+                    </div>
+                    <div class="card-body">
+                        <div class="card-form">
+                            <div class="">
+                                <div class="form-group">
+                                    <table class="table-table" style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label for="transaction_from">From: </label>
+                                            </td>
+                                            <td>
+                                                <input type="date" class="form-control" id="transaction_from">
+                                            </td>
+                                            <td>
+                                                <label for="transaction_to">To: </label>
+                                            </td>
+                                            <td>
+                                                <input type="date" class="form-control" id="transaction_to">
+                                            </td>
+                                            <td>
+                                                <input type="button" class="form-control" id="transaction_view" value="VIEW">
+                                            </td>
+                                        </tr>
+                                    
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group" style="height: 30vh; overflow: auto;">
+                                <table id="table_transaction" class="table" >
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Service</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Volume</th>
+                                            <th>Unit Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2024-06-01</td>
+                                            <td>Web Hosting</td>
+                                            <td>Service</td>
+                                            <td>John Doe</td>
+                                            <td>Monthly web hosting</td>
+                                            <td>1</td>
+                                            <td>$10.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2024-06-02</td>
+                                            <td>Domain Registration</td>
+                                            <td>Service</td>
+                                            <td>Jane Smith</td>
+                                            <td>1-year domain registration</td>
+                                            <td>1</td>
+                                            <td>$15.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2024-06-03</td>
+                                            <td>SSL Certificate</td>
+                                            <td>Service</td>
+                                            <td>Bob Johnson</td>
+                                            <td>1-year SSL certificate</td>
+                                            <td>1</td>
+                                            <td>$20.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2024-06-04</td>
+                                            <td>Website Maintenance</td>
+                                            <td>Service</td>
+                                            <td>Alice Brown</td>
+                                            <td>Monthly website maintenance</td>
+                                            <td>1</td>
+                                            <td>$30.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>   
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.3: REPORTS -->
+        <div id="page_6" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span>REPORTS</span>
+                    </div>
+                    
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <table class="table-admin-main" style="width:100%;">
+                                <tr>
+                                    <!--REPORTS -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_reports_sales">
+                                        <span id="option_name_reports_sales" class="w-100 text-wrap">SALES</span>
+                                    </div>
+                                   </td>
+
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_reports_inventory">
+                                        <span id="option_name_reports_inventory" class="w-100 text-wrap">INVENTORY</span>
+                                    </div>
+                                   </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.3.1: REPORTS TABLE -->
+        <div id="page_7" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span id="report_name">SALES</span><span> REPORT</span> 
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    <div class="card-form">
+                        <div class="">
+                            <div class="form-group">
+                                <table class="table-table" style="width:100%;">
+                                    <tr>
+                                        <td>
+                                            <label for="transaction_from">From: </label>
+                                        </td>
+                                        <td>
+                                            <input type="date" class="form-control" id="transaction_from">
+                                        </td>
+                                        <td>
+                                            <label for="transaction_to">To: </label>
+                                        </td>
+                                        <td>
+                                            <input type="date" class="form-control" id="transaction_to">
+                                        </td>
+                                        <td>
+                                            <input type="button" class="form-control" id="transaction_view" value="VIEW">
+                                        </td>
+                                    </tr>
+                                   
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group" style="height: 30vh; overflow: auto;">
+                            <table id="table_transaction" class="table" >
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Service</th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Volume</th>
+                                        <th>Unit Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>   
+                </div>
+                    
+            </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2.4: SETTINGS -->
+        <div id="page_8" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span>SETTINGS</span>
+                    </div>
+                    
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <table class="table-admin-main" style="width:100%;">
+                                <tr>
+                                    <!--REPORTS -->
+                                   <td class="w-25">
+                                    <div class="box" id="option_btn_settings_account">
+                                        <span id="option_name_reports_sales" class="w-100 text-wrap">USER ACCOUNT</span>
+                                    </div>
+                                   </td>
+
+                                   <td class="w-25">
+                                    <div class="box" id="option_name_reports_logout">
+                                        <span id="option_name_reports_logout" class="w-100 text-wrap">LOGOUT</span>
+                                    </div>
+                                   </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+         <!-- PAGE 2.4.1 SETTINGS ACCOUNT -->
+         <div id="page_9" class="page hidden" style="width:100%; height:100vh;">
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div class="card border">
+                <div class="card-header text-center">
+                    <div class="main-header">
+                        <span>LAUNDROFILL</span>
+                    </div>
+                    <div class="sub-header">
+                        <span>ACCOUNT SETTINGS</span>
+                    </div>
+                </div>
+                <div class="card-body"></div>
+                    <div class="card-form">
+                        <div class="form-group">
+                            <div class="row">
+                                <table class="table-form w-100">
+                                    <tr>
+                                        <td class="td-label">
+                                            <select type="text" class="form-control" id="settings_user_type" placeholder="User Type">
+                                                <option value="admin">ADMIN</option>
+                                                <option value="user" >USER</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <label> Change Password</label> <br>
+                                            <span id="settings_error_message" class="hidden" style="font-size:20px; color:red;">* password mismatch</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-label">
+                                            <input type="text" class="form-control" id="settings_username" placeholder="Username">
+                                        </td>
+                                        <td>
+                                            <input type="password" class="form-control" id="settings_new_password" placeholder="New Password" disabled>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-label">
+                                            <input type="password" class="form-control" id="settings_old_password" placeholder="Old Password">
+                                        </td>
+                                        <td>
+                                            <input type="password" class="form-control" id="settings_confirm_password" placeholder="Confirm Password" disabled>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="btn-div text-right" style="padding:30px 0;">
+                                <button>Cancel</button>
+                                <button>Edit</button>
+                                <button>Update</button>
+                            </div>
+                            
+
+
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal-div">
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+<!-- <script>
+
+    //PAGE 1: VARIABLES
+    var txt_login_username = null;
+    var txt_login_password = null;
+
+    var btn_login_exit = $("#btn_login_exit");
+    var btn_login = $("#btn_login");
+
+    //PAGE 1: FUNCTIONS
+    function getLoginInfo() {
+
+        txt_login_username = $("#login_username").val();
+        txt_login_password = $("#login_password").val();
+
+        $.ajax({
+            url: 'data.php',
+            type: 'POST',
+            data: {
+                tagged: "getLogin",
+                username: txt_login_username,
+                password: txt_login_password
+            },
+            success: function(response) {
+                alert("Login successful: " + response);
+            },
+            error: function(xhr, status, error) {
+                alert("Login failed: " + xhr.responseText);
+            }
+        });
+    }
+
+    $('document').ready(function () {
+        btn_login.on('click', function() {
+            getLoginInfo();
+        });
+    });
+
+</script> -->
+
+</html>

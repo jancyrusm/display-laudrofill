@@ -1,0 +1,233 @@
+:root {
+    --font-size: 35px;
+
+    --bg-color-body: #FFFFFA;
+    --color-primary-green: #68BE5F; 
+    --color-primary-blue: #4F80C1;
+    --color-secondary-blue: #649bce;
+    --color-muted-blue: #4C5584;
+    --color-muted-green: #075C38;
+    --color-primary-white: #FFFFFA;
+    --color-primary-gray: #706868;
+    --color-muted-gray: #c5c5c5;
+
+    --box-bg-color-main: #4F80C1;
+    --box-bg-color-hover: #4C5584;
+    --box-color-hover: #FFFFFA;
+    --box-color-main: #FFFFFA;
+    --font-color-label: #FFFFFA;
+
+    --btn-bg-color-main: #4F80C1;
+    --btn-color-main: #FFFFFA;
+    --btn-bg-color-hover: #4C5584;
+    --btn-color-hover: #FFFFFA;
+
+
+    --font-size: 35px;
+}
+
+@font-face {
+    font-family: DelaGothicOne;
+    src: url(fonts/DelaGothicOne.ttf);
+}
+
+body {
+    font-size: var(--font-size);
+    background-color: var(--bg-color-body);
+    color: var(--color-muted-blue);
+}
+
+body button {
+    background-color: var(--btn-bg-color-main);
+    border: 2px solid var(--btn-bg-color-hover);
+    color: var(--btn-color-main);
+    padding: 1%;
+}
+
+body button:hover {
+    background-color: var(--btn-bg-color-hover);
+    border: 2px solid var(--btn-bg-color-main);
+    color: var(--btn-color-hover);
+}
+
+.hidden {
+    display: none;
+}
+.card-header .main-header {
+    font-size: 70px;
+    font-weight: bold;
+    align-items: center;
+    letter-spacing:20px;
+}
+
+.main-header .mh-left {
+    color: var(--color-primary-green);
+}
+
+.main-header .mh-right {
+    color: var(--color-primary-blue);
+}
+
+.card-header .sub-header {
+    font-size: 40px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.sub-header span {
+    color: var(--color-muted-blue);
+    font-weight: 550;
+    text-transform:capitalize;
+}
+
+
+.card-body {
+    width: 100%;
+    height: auto;
+
+
+}
+
+.form-group table {
+    font-weight: bold;
+    color: var(--font-color);
+}
+.form-group .table-login input {
+    font-size: var(--font-size);
+    font-weight: bold;
+    color: var(--font-color);
+}
+
+.card-form {
+    padding: 0 20px;
+}
+
+.table-login tr td {
+    padding: 15px
+}
+
+button {
+    width: 20%;
+    font-weight: bold;
+    background-color: var(--btn-color-main);
+    border-color: var(--btn-color-hover);
+    color: var(--font-color);
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+button:hover {
+    background-color: var(--btn-bg-color-hover);
+    color: var(--box-color-hover);
+}
+
+.box {
+    background-color: var(--box-bg-color-main);
+    color: var(--box-color-main);
+    width: 80%;
+    height: 25vh;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    transition: box-shadow 0.3s ease;
+    padding: 10%;
+    line-height: 1;
+}
+.box span {
+    font-size: 80%;
+}
+
+.box:hover {
+    background-color: var(--box-bg-color-hover);
+    color: var(--box-color-hover);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-group .table-form {
+    font-size: 25px;
+}
+
+.form-group .table-form input,
+.form-group .table-form select {
+    font-size: 25px;
+}
+
+
+.table-form tr td {
+    padding: 10px;
+}
+
+.form-group .table-table input,
+.form-group .table-table label
+{
+    font-size: 25px;
+}
+
+.table-table tr td {
+    padding: 10px;
+}
+
+.table tr th {
+    font-size: 15px;
+}
+.table tr td {
+    font-size: 15px;
+    font-weight: 50;
+}
+
+.btn_back {
+    width: 100%;
+    /* border-radius: 50px; */
+    font-weight: bold;
+    font-size: 25px;
+    margin: 7px;
+}
+
+
+
+.progress {
+    position: relative;
+    height: 50px; /* Set the height of the progress container */
+    background-color: #e0e0e0; /* Background color for the progress container */
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    height: 100%; /* Make the progress bar fill the height of the progress container */
+    background-color: #4C5584; /* Set the color of the progress bar */
+    transition: width 0.6s ease; /* Smooth transition for width change */
+}
+
+label.product_name1, label.product_name2, label.product_name3 {
+    position: absolute;
+    left: 10px;
+    font-size: 16px;
+    color: var(--color-primary-white);
+    font-weight: bold;
+    z-index: 1;
+}
+
+.progress-bar[aria-valuenow="0"] {
+    width: 0%;
+}
+
+.progress-bar[aria-valuenow="25"] {
+    width: 25%;
+}
+
+.progress-bar[aria-valuenow="50"] {
+    width: 50%;
+}

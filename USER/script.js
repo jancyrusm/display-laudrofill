@@ -17,9 +17,9 @@ var p_finish            = $("#p_finish");
 
 
 //VARIABLES FROM DATABASE
-var product_name1 = "Surf (scent)";
-var product_name2 = "Ariel (scent)";
-var product_name3 = "Breeze (scent)";
+var product_name1 = "Tide";
+var product_name2 = "Ariel";
+var product_name3 = "Breeze";
 
 var volume_name1 = "60ml";
 var volume_name2 = "120ml";
@@ -123,6 +123,8 @@ function pageSelected(page) {
             console.log("service: " + service_type);
             sendValue("2"); //SERIAL MONITOR
         });
+
+        disableBackButton();
     } 
     else if (page === "normal_refill") {
         normal_refill.removeClass("hidden");
@@ -269,8 +271,9 @@ function enableDispenseButton() {
         customer_payment = change;
         console.log(customer_payment);
         val_change.val(customer_payment.toFixed(2)); 
-        //$("#btn_dispense_trans").removeClass('hidden');
-        pageSelected("p_dispensing");
+        $("#btn_dispense_trans").removeClass('hidden');
+        $("#btn_cancel_trans").removeClass('hidden');
+        //pageSelected("p_dispensing");
     }
 
     console.log("change: " + change);
@@ -318,6 +321,19 @@ function dispenseLoading() {
     setTimeout(function() {
         pageSelected("p_finish");
     }, finalTime);
+
+
+    $('#tagged').val("saveTransaction");
+    $('#service_type').val(service_type);
+    $('#selected_volume').val(selected_volume);
+    $('#selected_product').val(selected_product);
+    $('#total_price').val(total_price);
+    $('#customer_payment').val(customer_payment);
+    $('#laundry_load').val(laundry_load);
+    $('#selected_fabric').val(selected_fabric);
+    $('#selected_stain').val(selected_stain);
+
+    
 }
 
 
@@ -397,6 +413,25 @@ function smartVolumeSuggest() {
 }
 
 
+// function saveTransaction(formData) {
+//     $.ajax({
+//         url: '/saveTransaction', // Forward the request to the Node.js server
+//         type: 'POST',
+//         data: formData,
+//         contentType: false,
+//         processData: false,
+//         success: function (response) {
+//             console.log('Success:', response);
+//             alert("save transaction");
+//             location.reload();
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//             console.error('Error:', textStatus, errorThrown);
+//         }
+//     });
+// }
+
+
 // //////////////////////////////////////////////////////////////////////////////////////
 
 var socket = io();
@@ -423,26 +458,14 @@ function handleSerialData(data) {
     // You can add more logic to handle the received data
 }
 
-
-
-function saveTransaction(formData) {
-
-    $.ajax({
-        url: 'data.php', // Replace with your server endpoint
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            console.log('Success:', response);
-            location.reload();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error('Error:', textStatus, errorThrown);
-        }
-    });
-
+function disableBackButton() {
+    history.pushState(null, null, location.href);
+    window.onpopstate = function() {
+        history.go(1);
+    };
 }
+
+
 
 // //////////////////////////////////////////////////////////////////////////////////////
 
@@ -454,14 +477,25 @@ $(document).ready(function() {
     loadAllData(); 
 
     //PAGE 1: SPLASH SCREEN
-    pageSelected("splash");
-    setTimeout(function() {
-        pageSelected("main");
+    $("#btn_main_header").on('click', function () {
         sendValue("L"); //SERIAL MONITOR
-    }, 1000);
+        pageSelected("main");
+       
+        // setTimeout(function() {
+        //     pageSelected("main");
+        //     sendValue("L"); //SERIAL MONITOR
+        // }, 1000);
+    });
+    
 
     // for getting the value from the serial monitor
     getCoinInsertedValue();
+
+    $("#btn_exit_user").on('click', function() {
+        window.location.href = 'http://localhost/display-laudrofill/USER/admin.php';
+        sendValue("X");
+    });
+    
 
     //BACK BUTTON
     $(".btn_back").on('click', function() {
@@ -530,7 +564,7 @@ $(document).ready(function() {
         getUnitPrice();
 
         sendValue("1"); //SERIAL MONITOR
-        pageSelected("p_b_transation");
+        pageSelected("p_transaction");
     });
 
     $("#btn_product_name2").on('click', function() {
@@ -540,7 +574,7 @@ $(document).ready(function() {
         getUnitPrice();
 
         sendValue("2"); //SERIAL MONITOR
-        pageSelected("p_b_transation");
+        pageSelected("p_transaction");
     });
 
     $("#btn_product_name3").on('click', function() {
@@ -551,11 +585,11 @@ $(document).ready(function() {
         getUnitPrice();
 
         sendValue("3"); //SERIAL MONITOR
-        pageSelected("p_b_transation");
+        pageSelected("p_transaction");
     });
 
     ///////// FOR TRANSACTION INSERTING COIN //////////// 
-    // IF THE INSERTED AMOUNT IS REACHED  $("#btn_dispense_trans").removeClass('hidden');
+    // IF THE INaSERTED AMOUNT IS REACHED  $("#btn_dispense_trans").removeClass('hidden');
 
     $("#btn_proceed_trans").on('click', function() {
         pageSelected("p_transaction");
@@ -565,7 +599,10 @@ $(document).ready(function() {
         var confirmation = confirm("Are you sure you want to cancel the transaction?");
 
         if (confirmation) {
-            pageSelected("main");
+            sendValue("x");
+            //pageSelected("main");
+            location.reload();
+            
         }
     });
 
@@ -575,7 +612,7 @@ $(document).ready(function() {
     });
 
     $("#btn_dispense_trans").on('click', function() {
-        sendValue("1");
+        sendValue("d");
         pageSelected("p_dispensing");
     });
     
@@ -584,23 +621,76 @@ $(document).ready(function() {
 
 
 
-    $("#btn_finish").on('click', function() {
+    //$("#btn_finish").on('click', function() {
+    $(".btn_finish").on('click', function() {
 
-        var formData = new FormData();
-        formData.append('tagged', "saveTransaction");
-        formData.append('service_type', service_type);
-        formData.append('selected_volume', selected_volume);
-        formData.append('selected_product', selected_product);
-        formData.append('total_price', total_price);
-        formData.append('customer_payment', customer_payment);
-        formData.append('laundry_load', laundry_load);
-        formData.append('selected_fabric', selected_fabric);
-        formData.append('selected_stain', selected_stain);
-
-        saveTransaction(formData);
+        // Get form data as an object
+        var formData = {
+            tagged: "saveTransaction",
+            service_type: $('#service_type').val(),
+            selected_volume: $('#selected_volume').val(),
+            selected_product: $('#selected_product').val(),
+            total_price: $('#total_price').val(),
+            customer_payment: $('#customer_payment').val(),
+            laundry_load: $('#laundry_load').val(),
+            selected_fabric: $('#selected_fabric').val(),
+            selected_stain: $('#selected_stain').val()
+        };
+    
+        // Log the formData object to inspect its contents (optional)
+        console.log("FormData:", formData);
+    
+        $.ajax({
+            url: '/saveTransaction', // Send request to the Node.js server
+            type: 'POST',
+            data: formData, // Pass the formData object directly
+            success: function(response) {
+                console.log('Success:', response);
+                //alert("Transaction saved successfully.");
+                location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error:', textStatus, errorThrown);
+                alert("Failed to save transaction.");
+            }
+        });
        
     });
 
+    // $('#laundroForm').on('submit', function(e) {
+    //     e.preventDefault(); // Prevent default form submission
+    
+    //     // Get form data as an object
+    //     var formData = {
+    //         tagged: "saveTransaction",
+    //         service_type: $('#service_type').val(),
+    //         selected_volume: $('#selected_volume').val(),
+    //         selected_product: $('#selected_product').val(),
+    //         total_price: $('#total_price').val(),
+    //         customer_payment: $('#customer_payment').val(),
+    //         laundry_load: $('#laundry_load').val(),
+    //         selected_fabric: $('#selected_fabric').val(),
+    //         selected_stain: $('#selected_stain').val()
+    //     };
+    
+    //     // Log the formData object to inspect its contents (optional)
+    //     console.log("FormData:", formData);
+    
+    //     $.ajax({
+    //         url: '/saveTransaction', // Send request to the Node.js server
+    //         type: 'POST',
+    //         data: formData, // Pass the formData object directly
+    //         success: function(response) {
+    //             console.log('Success:', response);
+    //             //alert("Transaction saved successfully.");
+    //             location.reload();
+    //         },
+    //         error: function(jqXHR, textStatus, errorThrown) {
+    //             console.error('Error:', textStatus, errorThrown);
+    //             alert("Failed to save transaction.");
+    //         }
+    //     });
+    // });
 
 
     ///////////////////////////////// SMART DISPENSE /////////////////////////////////////////////
@@ -610,6 +700,7 @@ $(document).ready(function() {
         console.log("load: " + laundry_load);
 
         pageSelected("p_fabric");
+        sendValue(laundry_load);
         
     });
 

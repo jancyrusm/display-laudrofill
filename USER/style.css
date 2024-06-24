@@ -203,6 +203,14 @@ button:hover {
     margin: 7px;
 }
 
+.btn_exit_user {
+    width: 100%;
+    /* border-radius: 50px; */
+    font-weight: bold;
+    font-size: 25px;
+    margin: 7px;
+}
+
 .box-m {
     text-align: center;
     padding: 10px 15%;
