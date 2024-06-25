@@ -112,7 +112,7 @@ function pageSelected(page) {
             pageSelected("normal_refill");
             service_type = "Normal Refill";
             val_service_type.val(service_type);
-            console.log("service: " + service_type);
+            console.log("SERVICE TYPE: " + service_type);
             sendValue("1"); //SERIAL MONITOR
         });
 
@@ -120,7 +120,7 @@ function pageSelected(page) {
             pageSelected("smart_dispense");
             service_type = "Smart Dispense";
             val_service_type.val(service_type);
-            console.log("service: " + service_type);
+            console.log("SERVICE TYPE: " + service_type);
             sendValue("2"); //SERIAL MONITOR
         });
 
@@ -147,7 +147,7 @@ function pageSelected(page) {
         p_b_transaction.removeClass("hidden");
     }
     else if (page === "p_transaction") {
-        
+        getUnitPrice();
         p_transaction.removeClass("hidden");
         $("#btn_dispense_trans").addClass('hidden');
         $(".nrTran_payment").val("");
@@ -343,7 +343,7 @@ function smartVolumeSuggest() {
 
         // Example : 60ml
         selected_volume = $("#volume_name1").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
@@ -351,7 +351,7 @@ function smartVolumeSuggest() {
         
         // Example : 60ml
         selected_volume = $("#volume_name1").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
@@ -359,49 +359,49 @@ function smartVolumeSuggest() {
         
         // Example : 60ml
         selected_volume = $("#volume_name1").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "MEDIUM" && selected_fabric === "100% Cotton"){
         // Example : 120ml
         selected_volume = $("#volume_name2").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "MEDIUM" && selected_fabric === "Polyester"){
         // Example : 120ml
         selected_volume = $("#volume_name2").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "MEDIUM" && selected_fabric === "Cotton-Polyester Blend"){
         // Example : 120ml
         selected_volume = $("#volume_name3").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "HIGH" && selected_fabric === "100% Cotton"){
         // Example : 180ml
         selected_volume = $("#volume_name3").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "HIGH" && selected_fabric === "Polyester"){
         // Example : 180ml
         selected_volume = $("#volume_name3").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "HIGH" && selected_fabric === "Cotton-Polyester Blend"){
         // Example : 180ml
         selected_volume = $("#volume_name3").text();
-        console.log("service:" + selected_volume);
+        console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
@@ -493,7 +493,9 @@ $(document).ready(function() {
 
     $("#btn_exit_user").on('click', function() {
         window.location.href = 'http://localhost/display-laudrofill/USER/admin.php';
-        sendValue("X");
+        sendValue("admin");
+
+        //kunin na agad yung records sa admin monitoring
     });
     
 
@@ -504,7 +506,7 @@ $(document).ready(function() {
 
     //PAGE: Normal Refill 
     $("#nr_start").on('click', function() {
-        pageSelected("p_volume");
+        pageSelected("p_product");
         val_service_type.val(service_type);
         laundry_load = val_laundry_load.val();
         value = laundry_load;
@@ -516,11 +518,19 @@ $(document).ready(function() {
     $("#btn_volume_name1").on('click', function() {
 
         selected_volume = $("#volume_name1").text();
-        console.log("product:" + selected_volume);
+        console.log("VOLUME:" + selected_volume);
         val_selected_volume.val(selected_volume);
-
+        
         sendValue("1"); //SERIAL MONITOR
-        pageSelected("p_product");
+
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_product");
+        }
+        else {
+            pageSelected("p_transaction");
+        }
+        
+
     });
 
     $("#btn_volume_name2").on('click', function() {
@@ -528,9 +538,16 @@ $(document).ready(function() {
         selected_volume = $("#volume_name2").text();
         console.log("product:" + selected_volume);
         val_selected_volume.val(selected_volume);
+        getUnitPrice();
 
         sendValue("2"); //SERIAL MONITOR
-        pageSelected("p_product");   
+
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_product");
+        }
+        else {
+            pageSelected("p_transaction");
+        }  
     });
 
     $("#btn_volume_name3").on('click', function() {
@@ -538,9 +555,15 @@ $(document).ready(function() {
         selected_volume = $("#volume_name3").text();
         console.log("product:" + selected_volume);
         val_selected_volume.val(selected_volume);
+        getUnitPrice();
 
         sendValue("3"); //SERIAL MONITOR
-        pageSelected("p_product");
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_product");
+        }
+        else {
+            pageSelected("p_transaction");
+        }  
 
     });
 
@@ -549,9 +572,15 @@ $(document).ready(function() {
         selected_volume = $("#volume_name4").text();
         console.log("product:" + selected_volume);
         val_selected_volume.val(selected_volume);
+        getUnitPrice();
 
         sendValue("4"); //SERIAL MONITOR
-        pageSelected("p_product");
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_product");
+        }
+        else {
+            pageSelected("p_transaction");
+        }  
 
     });
 
@@ -559,22 +588,43 @@ $(document).ready(function() {
     //PAGE: SELECT PRODUCT
     $("#btn_product_name1").on('click', function() {
         selected_product = $("#product_name1").text();
-        console.log("product:" + selected_product);
+        console.log("PRODUCT:" + selected_product);
         val_selected_product.val(selected_product);
-        getUnitPrice();
+        // getUnitPrice();
 
         sendValue("1"); //SERIAL MONITOR
-        pageSelected("p_transaction");
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_transaction");
+            service_type = "Normal Refill";
+            val_service_type.val(service_type);
+        }
+        else if(service_type === "Smart Dispense"){
+            pageSelected("p_transaction");
+        }
+        else {
+            pageSelected("p_volume");
+        }
+        
     });
 
     $("#btn_product_name2").on('click', function() {
         selected_product = $("#product_name2").text();
         console.log("product:" + selected_product);
         val_selected_product.val(selected_product);
-        getUnitPrice();
+        // getUnitPrice();
 
         sendValue("2"); //SERIAL MONITOR
-        pageSelected("p_transaction");
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_transaction");
+            service_type = "Normal Refill";
+            val_service_type.val(service_type);
+        }
+        else if(service_type === "Smart Dispense"){
+            pageSelected("p_transaction");
+        }
+        else {
+            pageSelected("p_volume");
+        }
     });
 
     $("#btn_product_name3").on('click', function() {
@@ -582,10 +632,20 @@ $(document).ready(function() {
         selected_product = $("#product_name3").text();
         console.log("product:" + selected_product);
         val_selected_product.val(selected_product);
-        getUnitPrice();
+        // getUnitPrice();
 
         sendValue("3"); //SERIAL MONITOR
-        pageSelected("p_transaction");
+        if(service_type === "No Smart Dispense"){
+            pageSelected("p_transaction");
+            service_type = "Normal Refill";
+            val_service_type.val(service_type);
+        }
+        else if(service_type === "Smart Dispense"){
+            pageSelected("p_transaction");
+        }
+        else {
+            pageSelected("p_volume");
+        }
     });
 
     ///////// FOR TRANSACTION INSERTING COIN //////////// 
@@ -599,7 +659,7 @@ $(document).ready(function() {
         var confirmation = confirm("Are you sure you want to cancel the transaction?");
 
         if (confirmation) {
-            sendValue("x");
+            sendValue("c");
             //pageSelected("main");
             location.reload();
             
@@ -697,7 +757,7 @@ $(document).ready(function() {
 
     $("#sd_next").on("click", function() {
         laundry_load = $("#nrTran_load").val();
-        console.log("load: " + laundry_load);
+        console.log("LAUNDRY LOAD: " + laundry_load);
 
         pageSelected("p_fabric");
         sendValue(laundry_load);
@@ -707,7 +767,7 @@ $(document).ready(function() {
     //PAGE: SELECT FABRIC
     $("#btn_fabric_name1").on('click', function() {
         selected_fabric = $("#fabric_name1").text();
-        console.log("fabric: " + selected_fabric);
+        console.log("FABRIC TYPE: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
         pageSelected("p_stain");
 
@@ -716,7 +776,7 @@ $(document).ready(function() {
 
     $("#btn_fabric_name2").on('click', function() {
         selected_fabric = $("#fabric_name2").text();
-        console.log("fabric: " + selected_fabric);
+        console.log("FABRIC TYPE: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
         pageSelected("p_stain");
 
@@ -725,7 +785,7 @@ $(document).ready(function() {
 
     $("#btn_fabric_name3").on('click', function() {
         selected_fabric = $("#fabric_name3").text();
-        console.log("fabric: " + selected_fabric);
+        console.log("FABRIC TYPE: " + selected_fabric);
         val_selected_fabric.val(selected_fabric);
         pageSelected("p_stain");
 
@@ -735,7 +795,7 @@ $(document).ready(function() {
     //PAGE: SELECT LEVEL OF STAIN
     $("#btn_stain_name1").on('click', function() {
         selected_stain = $("#stain_name1").text();
-        console.log("stain: " + selected_stain);
+        console.log("STAIN LEVEL: " + selected_stain);
         val_selected_stain.val(selected_stain);
         pageSelected("p_suggest");
 
@@ -744,7 +804,7 @@ $(document).ready(function() {
 
     $("#btn_stain_name2").on('click', function() {
         selected_stain = $("#stain_name2").text();
-        console.log("stain: " + selected_stain);
+        console.log("STAIN LEVEL: " + selected_stain);
         val_selected_stain.val(selected_stain);
         pageSelected("p_suggest");
 
@@ -753,7 +813,7 @@ $(document).ready(function() {
 
     $("#btn_stain_name3").on('click', function() {
         selected_stain = $("#stain_name3").text();
-        console.log("stain: " + selected_stain);
+        console.log("STAIN LEVEL: " + selected_stain);
         val_selected_stain.val(selected_stain);
         pageSelected("p_suggest");
 
@@ -764,22 +824,24 @@ $(document).ready(function() {
     //PAGE: SMART DISPENSE SUGGESTION
     $("#sd_YES").on('click', function() {
         pageSelected("p_product");
+        console.log("SERVICE TYPE: " + service_type);
         // selected_product = $("#product_name1").text();
         // console.log("product:" + selected_product);
         // val_selected_stain.val(selected_product);
 
-        sendValue("1");
+        sendValue("y");
     });
 
     $("#sd_NO").on('click', function() {
-        service_type = "Normal Refill";
-        val_service_type.val(service_type);
         pageSelected("p_volume");
+        service_type = "No Smart Dispense";
+        val_service_type.val(service_type);
+        console.log("SERVICE TYPE: " + service_type);
         // selected_product = $("#product_name1").text();
         // console.log("product:" + selected_product);
         // val_selected_stain.val(selected_product);
 
-        sendValue("2");
+        sendValue("n");
     });
 
 

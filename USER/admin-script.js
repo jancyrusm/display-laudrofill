@@ -60,7 +60,7 @@ function pageSelected(page){
         page_reports_table.removeClass('hidden');
     } else if (page === "account") {
         page_account.removeClass('hidden');
-    } else if (page === "page_monitoring") {
+    } else if (page === "p_monitoring") {
         page_monitoring.removeClass('hidden');
     }
 }
@@ -337,6 +337,30 @@ function loadInventoryReportsTable(tran_from, tran_to)
     });
 }
 
+
+function updateProgressBar(product1_value, product2_value, product3_value) {
+    // Ensure the value is within the valid range
+    product1_value = Math.max(0, Math.min(100, product1_value));
+    product2_value = Math.max(0, Math.min(100, product2_value));
+    product3_value = Math.max(0, Math.min(100, product3_value));
+
+    // Select the progress bar element
+    var progressBar1 = document.querySelector('#progress_bar1');
+    var progressBar2 = document.querySelector('#progress_bar2');
+    var progressBar3 = document.querySelector('#progress_bar3');
+
+    // Update the aria-valuenow attribute and the width style property
+    progressBar1.setAttribute('aria-valuenow', product1_value);
+    progressBar1.style.width = product1_value + '%';
+
+    progressBar2.setAttribute('aria-valuenow', product2_value);
+    progressBar2.style.width = product2_value + '%';
+
+    progressBar3.setAttribute('aria-valuenow', product3_value);
+    progressBar3.style.width = product3_value + '%';
+}
+
+
 /////////////////////////////////////////////////////////////////////////////
 $('document').ready(function () {
 
@@ -539,9 +563,15 @@ $('document').ready(function () {
         $('#reports_inventory_card').removeClass("hidden");
     });
 
-    $('#option_name_reports_monitoring').on('click', function() {
+    $('#option_btn_reports_monitoring').on('click', function() {
         $("#report_name").text("MONITORING");
-        pageSelected('p_monitoring');
+        pageSelected("p_monitoring");
+
+        var product1_value = 10;
+        var product2_value = 20;
+        var product3_value = 30;
+
+        updateProgressBar(product1_value, product2_value, product3_value);
     });
     
 
@@ -565,7 +595,16 @@ $('document').ready(function () {
         } 
     });
 
-/// HIIIIII NAG-UUPDATE KA BA?
+//////////////////////////////////////////////////////////////////////////
+
+// var socket = io();
+
+// function monitoring() {
+//     socket.on('distance', function(data) {
+//         console.log("Distance data received:", data);
+//     });
+// }
+
 
     
 
