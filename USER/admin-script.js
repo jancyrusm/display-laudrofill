@@ -361,8 +361,42 @@ function updateProgressBar(product1_value, product2_value, product3_value) {
 }
 
 
+var distance1;
+var distance2;
+var distance3;
+
+function getTheLDDIstance() {
+    $.ajax({
+        url: 'admin-data.php',
+        type: 'GET',
+        data: {
+            tagged: "getLDDistance",
+        },
+        success: function(response) {
+            var distance1 = response.distance1;
+            var distance2 = response.distance2;
+            var distance3 = response.distance3;
+
+            // Use the distances as needed
+            console.log('Distance 1:', distance1);
+            console.log('Distance 2:', distance2);
+            console.log('Distance 3:', distance3);
+            
+            // Example: Update HTML elements with the distances
+            $('#distance1').text(distance1 + ' cm');
+            $('#distance2').text(distance2 + ' cm');
+            $('#distance3').text(distance3 + ' cm');
+        },
+        error: function(xhr, status, error) {
+            alert('Failed to update product: ' + xhr.responseText);
+        }
+    });
+}
+
 /////////////////////////////////////////////////////////////////////////////
 $('document').ready(function () {
+
+    getTheLDDIstance();
 
     $(".btn_back").on('click', function() {
         pageSelected("main");

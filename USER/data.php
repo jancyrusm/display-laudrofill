@@ -54,6 +54,25 @@ function saveTransaction($conn, $service_type, $selected_volume, $selected_produ
     $stmt->close();
 }
 
+function saveLDDistance($conn, $distance_1, $distance_2, $distance_3) {
+    // Prepare SQL statement using prepared statements
+    $stmt = $conn->prepare("UPDATE ld_distance SET Distance_1 = ?, Distance_2 = ?, Distance_3 = ? WHERE RecID = 1");
+    
+    // Bind parameters to the prepared statement
+    $stmt->bind_param("iii", $distance_1, $distance_2, $distance_3);
+    
+    // Execute the statement
+    if ($stmt->execute()) {
+        return true; // Update successful
+    } else {
+        return false; // Update failed
+    }
+    
+    // Close the statement
+    $stmt->close();
+}
+
+
 ////////////////////////////////////////////////////////////////////// Main script
 $conn = connectToDatabase();
 
@@ -70,8 +89,15 @@ $laundry_load       = isset($formData['laundry_load']) ? $formData['laundry_load
 $selected_fabric    = isset($formData['selected_fabric']) ? $formData['selected_fabric'] : null;
 $selected_stain     = isset($formData['selected_stain']) ? $formData['selected_stain'] : null;
 
+$distance_1     = isset($formData['distance1']) ? $formData['distance1'] : null;
+$distance_2     = isset($formData['distance2']) ? $formData['distance2'] : null;
+$distance_3     = isset($formData['distance3']) ? $formData['distance3'] : null;
+
 if ($tagged === 'saveTransaction') {
     saveTransaction($conn, $service_type, $selected_volume, $selected_product, $total_price, $customer_payment, $laundry_load, $selected_fabric, $selected_stain);
+}
+else if ($tagged === 'saveLDDistance') {
+    saveLDDistance($conn, $distance_1, $distance_2, $distance_3);
 }
 
 closeDatabaseConnection($conn);

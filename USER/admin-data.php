@@ -358,6 +358,36 @@ function viewInventoryReport($conn){
     $stmt->close();
 }
 
+function getLDDistance($conn){
+    $distances = array();
+
+    // SQL query to select distances from ld_distance table
+    $sql = "SELECT * FROM ld_distance WHERE id = 1"; // Adjust 'id = 1' according to your table structure
+
+    // Execute the query
+    $result = $conn->query($sql);
+
+    // Check if the query executed successfully
+    if ($result && $result->num_rows > 0) {
+        // Fetch data row by row
+        while ($row = $result->fetch_assoc()) {
+            // Store distances in the array
+            $distances['distance_1'] = $row['Distance_1'];
+            $distances['distance_2'] = $row['Distance_2'];
+            $distances['distance_3'] = $row['Distance_3'];
+        }
+    } else {
+        // Handle case where no rows are returned or query fails
+        echo "No distances found or query failed: " . $conn->error;
+    }
+
+    // Free result set
+    $result->free_result();
+
+    // Return the distances array
+    return $distances;
+}
+
 
 /////////////////////////////////////////////////// MAIN CODES ///////////////////////////////////////////////
 $conn = connectToDatabase();
@@ -388,6 +418,9 @@ switch ($tagged) {
         break;
     case 'viewInventoryReport':
         viewInventoryReport($conn);
+        break;
+    case 'getLDDistance':
+        getLDDistance($conn);
         break;
 }
 

@@ -452,6 +452,35 @@ function getCoinInsertedValue() {
     });
 }
 
+var distance_1;
+var distance_2;
+var distance_3;
+
+function getLDDistance() {
+    let distance_1, distance_2, distance_3;
+
+    // Listen for distance 1
+    socket.on('distance1', function(distance) {
+        console.log('Distance 1 received:', distance);
+        distance_1 = distance;
+        $('#distance1').val(distance_1); // Update text content, assuming #distance1 is a <div>
+    });
+
+    // Listen for distance 2
+    socket.on('distance2', function(distance) {
+        console.log('Distance 2 received:', distance);
+        distance_2 = distance;
+        $('#distance2').val(distance_2); // Update text content, assuming #distance2 is a <div>
+    });
+
+    // Listen for distance 3
+    socket.on('distance3', function(distance) {
+        console.log('Distance 3 received:', distance);
+        distance_3 = distance;
+        $('#distance3').val(distance_3); // Update text content, assuming #distance3 is a <div>
+    });
+}
+
 function handleSerialData(data) {
     // Process the serial data here
     console.log("Handling serial data: " + data);
@@ -465,6 +494,30 @@ function disableBackButton() {
     };
 }
 
+function saveLDDistance() {
+    var formData = {
+        tagged: "saveLDDistance",
+        distance1: $('#distance1').val(),
+        distance2: $('#distance2').val(),
+        distance3: $('#distance3').val()
+    };
+        
+    $.ajax({
+        url: '/saveTransaction', // Send request to the Node.js server
+        type: 'POST',
+        data: formData, // Pass the formData object directly
+        success: function(response) {
+            console.log('Success:', response);
+            sendValue("0");
+            //window.location.href = 'http://localhost/display-laudrofill/USER/admin.php';
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+        }
+    });
+}
+
+
 
 
 // //////////////////////////////////////////////////////////////////////////////////////
@@ -475,6 +528,7 @@ $(document).ready(function() {
 
     
     loadAllData(); 
+    getLDDistance();
 
     //PAGE 1: SPLASH SCREEN
     $("#btn_main_header").on('click', function () {
@@ -491,11 +545,27 @@ $(document).ready(function() {
     // for getting the value from the serial monitor
     getCoinInsertedValue();
 
-    $("#btn_exit_user").on('click', function() {
-        window.location.href = 'http://localhost/display-laudrofill/USER/admin.php';
-        sendValue("admin");
 
-        //kunin na agad yung records sa admin monitoring
+    ///////// for getting the distance of each ultrasonic sensor
+    
+    
+    $("#btn_exit_user").on('click', function() {
+
+         //Get the values of the distance
+         sendValue("admin");
+         sendValue("1");
+         sendValue("1");
+         const distance1 = $('#distance1').val();
+         sendValue("2");
+         const distance2 = $('#distance2').val();
+         sendValue("3");
+         const distance3 = $('#distance3').val();
+
+        if(distance1 && distance2 && distance3 != null){
+            saveLDDistance();
+        }
+
+        
     });
     
 
@@ -759,8 +829,19 @@ $(document).ready(function() {
         laundry_load = $("#nrTran_load").val();
         console.log("LAUNDRY LOAD: " + laundry_load);
 
-        pageSelected("p_fabric");
-        sendValue(laundry_load);
+        if(laundry_load <= 0){
+            alert("laundry cannot be 0kg!");
+        }
+        else if(laundry_load > 8){
+            alert("laundry cannot be more than 8Kg");
+        }
+        else {
+            pageSelected("p_fabric");
+            sendValue(laundry_load);
+        }
+
+
+        
         
     });
 
