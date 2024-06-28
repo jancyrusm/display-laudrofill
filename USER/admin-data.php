@@ -358,11 +358,21 @@ function viewInventoryReport($conn){
     $stmt->close();
 }
 
-function getLDDistance($conn){
+
+function getLDDistance($conn) {
     $distances = array();
 
     // SQL query to select distances from ld_distance table
-    $sql = "SELECT * FROM ld_distance WHERE id = 1"; // Adjust 'id = 1' according to your table structure
+    // $sql = "SELECT Distance_1, Distance_2, Distance_3 FROM ld_distance WHERE RecID = 1";
+    $sql = "
+            SELECT 
+                (SELECT ProductName FROM products WHERE ProductID = 1) AS Product_1,
+                (SELECT ProductName FROM products WHERE ProductID = 2) AS Product_2,
+                (SELECT ProductName FROM products WHERE ProductID = 3) AS Product_3,
+                (SELECT Distance_1 FROM ld_distance WHERE RecID = 1) AS Distance_1,
+                (SELECT Distance_2 FROM ld_distance WHERE RecID = 1) AS Distance_2,
+                (SELECT Distance_3 FROM ld_distance WHERE RecID = 1) AS Distance_3;
+    ";
 
     // Execute the query
     $result = $conn->query($sql);
@@ -372,20 +382,25 @@ function getLDDistance($conn){
         // Fetch data row by row
         while ($row = $result->fetch_assoc()) {
             // Store distances in the array
-            $distances['distance_1'] = $row['Distance_1'];
-            $distances['distance_2'] = $row['Distance_2'];
-            $distances['distance_3'] = $row['Distance_3'];
+            $distances['distance1'] = $row['Distance_1'];
+            $distances['distance2'] = $row['Distance_2'];
+            $distances['distance3'] = $row['Distance_3'];
+            $distances['product1'] = $row['Product_1'];
+            $distances['product2'] = $row['Product_2'];
+            $distances['product3'] = $row['Product_3'];
         }
     } else {
         // Handle case where no rows are returned or query fails
-        echo "No distances found or query failed: " . $conn->error;
+        echo json_encode(array('error' => 'No distances found or query failed: ' . $conn->error));
+        exit;
     }
 
     // Free result set
     $result->free_result();
 
-    // Return the distances array
-    return $distances;
+    // Return the distances array as JSON
+    echo json_encode($distances);
+    exit;
 }
 
 

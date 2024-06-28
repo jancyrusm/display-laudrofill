@@ -26,6 +26,11 @@ var volume_name2 = "120ml";
 var volume_name3 = "180ml";
 var volume_name4 = "240ml";
 
+var nr_volume_name1 = "100ml";
+var nr_volume_name2 = "250ml";
+var nr_volume_name3 = "500ml";
+var nr_volume_name4 = "1000ml";
+
 var fabric_name1 = "100% Cotton";
 var fabric_name2 = "Polyester";
 var fabric_name3 = "Cotton-Polyester Blend";
@@ -34,20 +39,50 @@ var stain_name1 = "LOW";
 var stain_name2 = "MEDIUM";
 var stain_name3 = "HIGH";
 
-var price_prod1_vol1 = "7.00";
-var price_prod1_vol2 = "13.00";
-var price_prod1_vol3 = "19.00";
-var price_prod1_vol4 = "25.00";
 
-var price_prod2_vol1 = "7.00";
-var price_prod2_vol2 = "13.00";
-var price_prod2_vol3 = "19.00";
-var price_prod2_vol4 = "25.00";
+//SMART DISPENSE PRICE
+var price_prod1_vol1 = "3.00";
+var price_prod1_vol2 = "6.00";
+var price_prod1_vol3 = "9.00";
+var price_prod1_vol4 = "12.00";
 
-var price_prod3_vol1 = "7.00";
-var price_prod3_vol2 = "13.00";
-var price_prod3_vol3 = "19.00"; 
-var price_prod2_vol4 = "25.00";
+var price_prod2_vol1 = "3.00";
+var price_prod2_vol2 = "6.00";
+var price_prod2_vol3 = "9.00";
+var price_prod2_vol4 = "12.00";
+
+var price_prod3_vol1 = "3.00";
+var price_prod3_vol2 = "6.00";
+var price_prod3_vol3 = "9.00"; 
+var price_prod2_vol4 = "12.00";
+
+// NORMAL REFILL
+var price_prod1_nr_vol1 = "5.00";
+var price_prod1_nr_vol2 = "12.00";
+var price_prod1_nr_vol3 = "25.00";
+var price_prod1_nr_vol4 = "30.00";
+
+var price_prod2_nr_vol1 = "5.00";
+var price_prod2_nr_vol2 = "12.00";
+var price_prod2_nr_vol3 = "25.00";
+var price_prod2_nr_vol4 = "30.00";
+
+var price_prod3_nr_vol1 = "5.00";
+var price_prod3_nr_vol2 = "12.00";
+var price_prod3_nr_vol3 = "25.00";
+var price_prod2_nr_vol4 = "30.00";
+
+
+// DISPENSE RATE
+var dispense_nr_vol1 = 8575;
+var dispense_nr_vol2 = 21437;
+var dispense_nr_vol3 = 42875;
+var dispense_nr_vol4 = 85750;
+
+var dispense_vol1 = 5170;
+var dispense_vol2 = 10260;
+var dispense_vol3 = 15420;
+var dispense_vol4 = 20580;
 
 
 
@@ -131,7 +166,23 @@ function pageSelected(page) {
     } else if (page === "smart_dispense") {
         smart_dispensing.removeClass("hidden");
     } else if (page === "p_volume") {
+
+        if(service_type === "Normal Refill"){
+            $("#volume_name1").text(nr_volume_name1);
+            $("#volume_name2").text(nr_volume_name2);
+            $("#volume_name3").text(nr_volume_name3);
+            $("#volume_name4").text(nr_volume_name4);
+        }
+        else {
+            $("#volume_name1").text(volume_name1);
+            $("#volume_name2").text(volume_name2);
+            $("#volume_name3").text(volume_name3);
+            $("#volume_name4").text(volume_name4);
+        }
+
         p_volume.removeClass("hidden");
+
+
     } else if (page === "p_product") {
         p_product.removeClass("hidden");
     } else if (page === "p_fabric") {
@@ -181,10 +232,7 @@ function transactionLog() {
 
 
 function loadAllData() {
-    $("#volume_name1").text(volume_name1);
-    $("#volume_name2").text(volume_name2);
-    $("#volume_name3").text(volume_name3);
-    $("#volume_name4").text(volume_name4);
+
 
     $("#product_name1").text(product_name1);
     $("#product_name2").text(product_name2);
@@ -210,8 +258,52 @@ function getUnitPrice() {
 
     var price;
     
+    /////////////// NORMAL REFILL  ///////////////////////////////////
     // product 1
-    if(volume === volume_name1 && product === product_name1) {
+    if(volume === nr_volume_name1 && product === product_name1) {
+        price = price_prod1_nr_vol1;
+    } 
+    else if(volume === nr_volume_name2 && product === product_name1) {
+        price = price_prod1_nr_vol2;
+    } 
+    else if(volume === nr_volume_name3 && product === product_name1) {
+        price = price_prod1_nr_vol3;
+    }
+    else if(volume === nr_volume_name4 && product === product_name1) {
+        price = price_prod1_nr_vol4;
+    }
+
+    // product 2
+    else if(volume === nr_volume_name1 && product === product_name2) {
+        price = price_prod2_nr_vol1;
+    } 
+    else if(volume === nr_volume_name2 && product === product_name2) {
+        price = price_prod2_nr_vol2;
+    } 
+    else if(volume === nr_volume_name3 && product === product_name2) {
+        price = price_prod2_nr_vol3;
+    }
+    else if(volume === nr_volume_name4 && product === product_name2) {
+        price = price_prod2_nr_vol4;
+    }
+
+    // product 3
+    else if(volume === nr_volume_name1 && product === product_name3) {
+        price = price_prod3_vol1;
+    } 
+    else if(volume === nr_volume_name2 && product === product_name3) {
+        price = price_prod3_vol2;
+    } 
+    else if(volume === nr_volume_name3 && product === product_name3) {
+        price = price_prod3_vol3;
+    } 
+    else if(volume === nr_volume_name4 && product === product_name3) {
+        price = price_prod3_vol4;
+    }
+
+    /////////////// SMART DISPENSE  ///////////////////////////////////
+    // product 1
+    else if(volume === volume_name1 && product === product_name1) {
         price = price_prod1_vol1;
     } 
     else if(volume === volume_name2 && product === product_name1) {
@@ -295,33 +387,59 @@ function changeComputation() {
     console.log("change: " + change);
 }
 
+
+
+
 function dispenseLoading() {
 
-    var timeDelay = 1000; // Default to 10 seconds if no match
+    var timeDelay;
     var finalTime = null;
 
-    if (selected_volume === volume_name1) {
-        timeDelay = 5170;
-        finalTime = timeDelay + 4000;
-    } 
-    else if (selected_volume === volume_name2) {
-        timeDelay = 10260;
-        finalTime = timeDelay + 4000;
-    } 
-    else if (selected_volume === volume_name3) {
-        timeDelay = 15420;
-        finalTime = timeDelay + 4000;
-    }
-    else if (selected_volume === volume_name4) {
-        timeDelay = 20580;
-        finalTime = timeDelay + 4000;
-    }
 
-    // Change the page after the time delay
-    setTimeout(function() {
-        pageSelected("p_finish");
-    }, finalTime);
-
+    if(service_type === "Normal Refill"){
+        if (selected_volume === volume_name1) {
+            timeDelay = dispense_nr_vol1;
+            finalTime = timeDelay + 3000;
+        } 
+        else if (selected_volume === volume_name2) {
+            timeDelay = dispense_nr_vol2;
+            finalTime = timeDelay + 3000;
+        } 
+        else if (selected_volume === volume_name3) {
+            timeDelay = dispense_nr_vol3;
+            finalTime = timeDelay + 3000;
+        }
+        else if (selected_volume === volume_name4) {
+            timeDelay = dispense_nr_vol4;
+            finalTime = timeDelay + 3000;
+        }
+    
+        setTimeout(function() {
+            pageSelected("p_finish");
+        }, finalTime);
+    }
+    else {
+        if (selected_volume === volume_name1) {
+            timeDelay = 5170;
+            finalTime = timeDelay + 4000;
+        } 
+        else if (selected_volume === volume_name2) {
+            timeDelay = 10260;
+            finalTime = timeDelay + 4000;
+        } 
+        else if (selected_volume === volume_name3) {
+            timeDelay = 15420;
+            finalTime = timeDelay + 4000;
+        }
+        else if (selected_volume === volume_name4) {
+            timeDelay = 20580;
+            finalTime = timeDelay + 4000;
+        }
+    
+        setTimeout(function() {
+            pageSelected("p_finish");
+        }, finalTime);
+    }
 
     $('#tagged').val("saveTransaction");
     $('#service_type').val(service_type);
@@ -332,7 +450,6 @@ function dispenseLoading() {
     $('#laundry_load').val(laundry_load);
     $('#selected_fabric').val(selected_fabric);
     $('#selected_stain').val(selected_stain);
-
     
 }
 
@@ -342,7 +459,7 @@ function smartVolumeSuggest() {
     if(selected_stain === "LOW" && selected_fabric === "100% Cotton"){
 
         // Example : 60ml
-        selected_volume = $("#volume_name1").text();
+        selected_volume = volume_name1;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
@@ -350,7 +467,7 @@ function smartVolumeSuggest() {
     else if(selected_stain === "LOW" && selected_fabric === "Polyester"){
         
         // Example : 60ml
-        selected_volume = $("#volume_name1").text();
+        selected_volume = volume_name1;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
@@ -358,49 +475,49 @@ function smartVolumeSuggest() {
     else if(selected_stain === "LOW" && selected_fabric === "Cotton-Polyester Blend"){
         
         // Example : 60ml
-        selected_volume = $("#volume_name1").text();
+        selected_volume = volume_name1;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "MEDIUM" && selected_fabric === "100% Cotton"){
         // Example : 120ml
-        selected_volume = $("#volume_name2").text();
+        selected_volume = volume_name2;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "MEDIUM" && selected_fabric === "Polyester"){
         // Example : 120ml
-        selected_volume = $("#volume_name2").text();
+        selected_volume = volume_name2;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "MEDIUM" && selected_fabric === "Cotton-Polyester Blend"){
         // Example : 120ml
-        selected_volume = $("#volume_name3").text();
+        selected_volume = volume_name3;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "HIGH" && selected_fabric === "100% Cotton"){
         // Example : 180ml
-        selected_volume = $("#volume_name3").text();
+        selected_volume = volume_name3;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "HIGH" && selected_fabric === "Polyester"){
         // Example : 180ml
-        selected_volume = $("#volume_name3").text();
+        selected_volume = volume_name3;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
 
     else if(selected_stain === "HIGH" && selected_fabric === "Cotton-Polyester Blend"){
         // Example : 180ml
-        selected_volume = $("#volume_name3").text();
+        selected_volume = volume_name3;
         console.log("VOLUME Suggest:" + selected_volume);
         val_selected_volume.val(selected_volume);
     }
@@ -412,27 +529,7 @@ function smartVolumeSuggest() {
 
 }
 
-
-// function saveTransaction(formData) {
-//     $.ajax({
-//         url: '/saveTransaction', // Forward the request to the Node.js server
-//         type: 'POST',
-//         data: formData,
-//         contentType: false,
-//         processData: false,
-//         success: function (response) {
-//             console.log('Success:', response);
-//             alert("save transaction");
-//             location.reload();
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//             console.error('Error:', textStatus, errorThrown);
-//         }
-//     });
-// }
-
-
-// //////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 var socket = io();
 
@@ -509,7 +606,7 @@ function saveLDDistance() {
         success: function(response) {
             console.log('Success:', response);
             sendValue("0");
-            //window.location.href = 'http://localhost/display-laudrofill/USER/admin.php';
+            window.location.href = 'http://localhost/display-laudrofill/USER/admin.php';
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error('Error:', textStatus, errorThrown);
@@ -521,14 +618,12 @@ function saveLDDistance() {
 
 
 // //////////////////////////////////////////////////////////////////////////////////////
-
-
-
 $(document).ready(function() {
 
     
     loadAllData(); 
     getLDDistance();
+    getCoinInsertedValue();
 
     //PAGE 1: SPLASH SCREEN
     $("#btn_main_header").on('click', function () {
@@ -542,33 +637,44 @@ $(document).ready(function() {
     });
     
 
-    // for getting the value from the serial monitor
-    getCoinInsertedValue();
-
-
     ///////// for getting the distance of each ultrasonic sensor
-    
-    
+    //EXIT BUTTON
     $("#btn_exit_user").on('click', function() {
 
-         //Get the values of the distance
-         sendValue("admin");
-         sendValue("1");
-         sendValue("1");
-         const distance1 = $('#distance1').val();
-         sendValue("2");
-         const distance2 = $('#distance2').val();
-         sendValue("3");
-         const distance3 = $('#distance3').val();
+        //ADMIN
+        sendValue("admin");
+        //Liquid Detergent Level Monitoring
+        sendValue("1");
+        //Product 1 Level
+        setTimeout(() => {
+            sendValue("1");
+            //getLDDistance();
+            //Product 2 Level
+            setTimeout(() => {
+                sendValue("2");
+                //getLDDistance();
+                //Product 3 Level
+                setTimeout(() => {
+                    sendValue("3");
+                    //TAKE ALL THE DATA
+                    setTimeout(() => {
+                        const distance1 = $('#distance1').val();
+                        const distance2 = $('#distance2').val();
+                        const distance3 = $('#distance3').val();
 
-        if(distance1 && distance2 && distance3 != null){
-            saveLDDistance();
-        }
+                        if (distance1 && distance2 && distance3 != null) {
+                            saveLDDistance();
+                        }
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }, 1000);
 
+        
         
     });
     
-
+    
     //BACK BUTTON
     $(".btn_back").on('click', function() {
         pageSelected("main");
@@ -745,10 +851,6 @@ $(document).ready(function() {
         sendValue("d");
         pageSelected("p_dispensing");
     });
-    
-
-    ///// CODE FOR DISPENSING PROCESSS ////////
-
 
 
     //$("#btn_finish").on('click', function() {
@@ -787,41 +889,7 @@ $(document).ready(function() {
        
     });
 
-    // $('#laundroForm').on('submit', function(e) {
-    //     e.preventDefault(); // Prevent default form submission
     
-    //     // Get form data as an object
-    //     var formData = {
-    //         tagged: "saveTransaction",
-    //         service_type: $('#service_type').val(),
-    //         selected_volume: $('#selected_volume').val(),
-    //         selected_product: $('#selected_product').val(),
-    //         total_price: $('#total_price').val(),
-    //         customer_payment: $('#customer_payment').val(),
-    //         laundry_load: $('#laundry_load').val(),
-    //         selected_fabric: $('#selected_fabric').val(),
-    //         selected_stain: $('#selected_stain').val()
-    //     };
-    
-    //     // Log the formData object to inspect its contents (optional)
-    //     console.log("FormData:", formData);
-    
-    //     $.ajax({
-    //         url: '/saveTransaction', // Send request to the Node.js server
-    //         type: 'POST',
-    //         data: formData, // Pass the formData object directly
-    //         success: function(response) {
-    //             console.log('Success:', response);
-    //             //alert("Transaction saved successfully.");
-    //             location.reload();
-    //         },
-    //         error: function(jqXHR, textStatus, errorThrown) {
-    //             console.error('Error:', textStatus, errorThrown);
-    //             alert("Failed to save transaction.");
-    //         }
-    //     });
-    // });
-
 
     ///////////////////////////////// SMART DISPENSE /////////////////////////////////////////////
 

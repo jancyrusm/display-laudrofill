@@ -364,6 +364,9 @@ function updateProgressBar(product1_value, product2_value, product3_value) {
 var distance1;
 var distance2;
 var distance3;
+var product1;
+var product2;
+var product3;
 
 function getTheLDDIstance() {
     $.ajax({
@@ -373,24 +376,86 @@ function getTheLDDIstance() {
             tagged: "getLDDistance",
         },
         success: function(response) {
-            var distance1 = response.distance1;
-            var distance2 = response.distance2;
-            var distance3 = response.distance3;
+            // Parse the JSON response
+            var data = JSON.parse(response);
 
-            // Use the distances as needed
-            console.log('Distance 1:', distance1);
-            console.log('Distance 2:', distance2);
-            console.log('Distance 3:', distance3);
-            
-            // Example: Update HTML elements with the distances
-            $('#distance1').text(distance1 + ' cm');
-            $('#distance2').text(distance2 + ' cm');
-            $('#distance3').text(distance3 + ' cm');
+            if (data.error) {
+                alert('Error: ' + data.error);
+                return;
+            }
+
+            distance1 = data.distance1;
+            distance2 = data.distance2;
+            distance3 = data.distance3;
+
+            product1 = data.product1;
+            product2 = data.product2;
+            product3 = data.product3;
+
+            $('.product_name1').text(product1);
+            $('.product_name2').text(product2);
+            $('.product_name3').text(product3);
+
+            // Log the levels
+            console.log("Product1:", getLevel(distance1));
+            console.log("Product2:", getLevel(distance2));
+            console.log("Product3:", getLevel(distance3));
+
+            // Update progress bars
+            updateProgressBar(distance1, '#progress_bar1');
+            updateProgressBar(distance2, '#progress_bar2');
+            updateProgressBar(distance3, '#progress_bar3');
+
         },
         error: function(xhr, status, error) {
             alert('Failed to update product: ' + xhr.responseText);
         }
     });
+
+
+}
+
+function getLevel(distance) {
+    if (distance >= 21 && distance <= 25) {
+        return "LOW";
+    } else if (distance >= 26 && distance <= 30) {
+        return "MEDIUM";
+    } else if (distance > 30) {
+        return "HIGH";
+    } else {
+        return "EMPTY";
+    }
+}
+
+function updateProgressBar(distance, progressBarId) {
+    const level = getLevel(distance);
+    const progressBar = $(progressBarId);
+    
+    let width = 0;
+    let color = '';
+
+    switch(level) {
+        case "LOW":
+            width = 25;
+            color = 'red';
+            break;
+        case "MEDIUM":
+            width = 50;
+            color = 'orange';
+            break;
+        case "HIGH":
+            width = 75;
+            color = 'green';
+            break;
+        case "EMPTY":
+            width = 0;
+            color = 'gray';
+            break;
+    }
+
+    progressBar.css('width', width + '%');
+    progressBar.css('background-color', color);
+    progressBar.attr('aria-valuenow', width);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -58,7 +58,23 @@
 
         <!-- PAGE 2 : MAIN -->
         <div id="page_main" class="page hidden" style="width:100%; height:100vh;">
-            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:100vh;">
+            <div style="width: 100%;margin:auto;gap: 20px;padding: 20px 20px 0 20px;" class="d-flex">
+                <div class="progress w-100">
+                    <label class="product_name1"></label>
+                    <div id="progress_bar1" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress w-100">
+                    <label class="product_name2 "></label>
+                    <div id="progress_bar2" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="progress w-100">
+                    <label class="product_name3 "></label>
+                    <div id="progress_bar3" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+
+            <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:90vh;">
             <div class="card border">
                 <div class="card-header text-center">
                     <div class="main-header">
