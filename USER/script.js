@@ -17,8 +17,8 @@ var p_finish            = $("#p_finish");
 
 
 //VARIABLES FROM DATABASE
-var product_name1 = "Tide";
-var product_name2 = "Ariel";
+var product_name1 = "Ariel";
+var product_name2 = "Tide";
 var product_name3 = "Breeze";
 
 var volume_name1 = "60ml";
