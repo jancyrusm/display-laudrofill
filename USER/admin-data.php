@@ -273,19 +273,29 @@ function viewSalesReport($conn) {
     $tran_from = isset($_GET['tranFrom']) ? $_GET['tranFrom'] : null;
     $tran_to = isset($_GET['tranTo']) ? $_GET['tranTo'] : null;
    
-    $sql = "   SELECT  TranID, 
-                    TranDate, 
-                    ProductName, 
-                    Service, 
-                    LaundryLoad, 
-                    FabricType, 
-                    StainLevel, 
-                    Volume, 
+    //$sql = "   SELECT  TranID, 
+    //                TranDate, 
+    //                ProductName, 
+    //                Service, 
+    //                LaundryLoad, 
+    //                FabricType, 
+    //                StainLevel, 
+    //                SUM(Volume) AS TotalVolume, 
+    //                SUM(Amount) AS TotalAmount
+    //        FROM    transactions
+    //        WHERE   TranDate BETWEEN ? AND ?
+    //        GROUP BY TranID, TranDate, ProductName, Service, LaundryLoad, FabricType, StainLevel
+    //    ";
+
+    $sql = "SELECT 
+                    TranDate,  
+                    SUM(Volume) AS TotalVolume, 
                     SUM(Amount) AS TotalAmount
+
             FROM    transactions
             WHERE   TranDate BETWEEN ? AND ?
-            GROUP BY TranID, TranDate, ProductName, Service, LaundryLoad, FabricType, StainLevel, Volume
-        ";
+            GROUP BY TranDate
+    ";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $tran_from, $tran_to);
@@ -295,23 +305,32 @@ function viewSalesReport($conn) {
     } else {
         $result = $stmt->get_result();
         $tableRowsHTML = '';
+        $counter = 1;
 
         while ($row = $result->fetch_assoc()) {
             $loginTime = new DateTime($row['TranDate']);
             // $formattedDate = $loginTime->format('m-d-Y, g:ia');
             $formattedDate = $loginTime->format('m-d-Y');
+           
 
+            // $tableRowsHTML .= ' <tr>
+            //                         <td>' . htmlspecialchars($row['TranID']) . '</td>
+            //                         <td>' . htmlspecialchars($formattedDate) . '</td>
+            //                         <td>' . htmlspecialchars($row['ProductName']) . '</td>
+            //                         <td>' . htmlspecialchars($row['Service']) . '</td>
+            //                         <td>' . htmlspecialchars($row['LaundryLoad']) . '</td>
+            //                         <td>' . htmlspecialchars($row['FabricType']) . '</td>
+            //                         <td>' . htmlspecialchars($row['StainLevel']) . '</td>
+            //                         <td>' . htmlspecialchars($row['Volume']) . '</td>
+            //                         <td>' . htmlspecialchars($row['TotalAmount']) . '</td>
+            //                     </tr>';
             $tableRowsHTML .= ' <tr>
-                                    <td>' . htmlspecialchars($row['TranID']) . '</td>
+                                    <td>' . $counter . '</td>
                                     <td>' . htmlspecialchars($formattedDate) . '</td>
-                                    <td>' . htmlspecialchars($row['ProductName']) . '</td>
-                                    <td>' . htmlspecialchars($row['Service']) . '</td>
-                                    <td>' . htmlspecialchars($row['LaundryLoad']) . '</td>
-                                    <td>' . htmlspecialchars($row['FabricType']) . '</td>
-                                    <td>' . htmlspecialchars($row['StainLevel']) . '</td>
-                                    <td>' . htmlspecialchars($row['Volume']) . '</td>
+                                    <td>' . htmlspecialchars($row['TotalVolume']) . '</td>
                                     <td>' . htmlspecialchars($row['TotalAmount']) . '</td>
                                 </tr>';
+            $counter++;
         }
 
         $response = array('success' => true, 'tableRowsHTML' => $tableRowsHTML);

@@ -467,11 +467,11 @@
                                 <tr>
                                         <th>ID</th>
                                         <th>DATE</th>
-                                        <th>PRODUCT</th>
+                                        <!-- <th>PRODUCT</th>
                                         <th>SERVICE</th>
                                         <th>LOAD</th>
                                         <th>FRABRIC</th>
-                                        <th>STAIN</th>
+                                        <th>STAIN</th> -->
                                         <th>VOLUME</th>
                                         <th>TOTAL</th>
                                     </tr>
