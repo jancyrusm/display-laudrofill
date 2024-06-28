@@ -21,6 +21,11 @@ int volume_level2 = 120;
 int volume_level3 = 180;
 int volume_level4 = 240;
 
+int nr_volume_level1 = 100;
+int nr_volume_level2 = 250;
+int nr_volume_level3 = 500;
+int nr_volume_level4 = 1000;
+
 String fabric_name1 = "100% Cotton";
 String fabric_name2 = "Polyester";
 String fabric_name3 = "Cotton-Polyester Blend";
@@ -265,10 +270,10 @@ void select_volume_manual() {
   Serial.println(" ");
   Serial.println(" ------------------------------------------------------------------");
   Serial.println(" ");
-  Serial.println("1. " + String(volume_level1) + "ml");
-  Serial.println("2. " + String(volume_level2) + "ml");
-  Serial.println("3. " + String(volume_level3) + "ml");
-  Serial.println("4. " + String(volume_level4) + "ml");
+  Serial.println("1. " + String(nr_volume_level1) + "ml");
+  Serial.println("2. " + String(nr_volume_level2) + "ml");
+  Serial.println("3. " + String(nr_volume_level3) + "ml");
+  Serial.println("4. " + String(nr_volume_level4) + "ml");
   Serial.println(" ");
   Serial.println(" ------------------------------------------------------------------");
 
@@ -277,16 +282,16 @@ void select_volume_manual() {
 
   switch (volume_select) {
     case 1:
-      selected_volume = volume_level1;
+      selected_volume = nr_volume_level1;
       break;
     case 2:
-      selected_volume = volume_level2;
+      selected_volume = nr_volume_level2;
       break;
     case 3:
-      selected_volume = volume_level3;
+      selected_volume = nr_volume_level3;
       break;
     case 4:
-      selected_volume = volume_level4;
+      selected_volume = nr_volume_level4;
       break;
     default:
       Serial.println(" ------------------------------------------------------------------ ");
@@ -462,6 +467,19 @@ void dispense() {
     case 240:
       delayTime = 20580;
       break;
+    //FOR NORMAL REFILLING
+    case 100:
+      delayTime = 8575;
+      break;
+    case 250:
+      delayTime = 21437;
+      break;
+    case 500:
+      delayTime = 42875;
+      break;
+    case 1000:
+      delayTime = 85750;
+      break;
   }
 
   // Dispense the product based on selected product
@@ -486,7 +504,8 @@ void dispense() {
 }
 
 void product_cost() {
-  int cost[4] = { 7, 13, 19, 25 };
+  // int cost[4] = { 7, 13, 19, 25 };
+  int cost[8] = { 3, 6, 9, 12, 5, 12, 25, 30 };
   if (selected_volume == 60) {
     amountNeeded = cost[0];
   } else if (selected_volume == 120) {
@@ -495,6 +514,16 @@ void product_cost() {
     amountNeeded = cost[2];
   } else if (selected_volume == 240) {
     amountNeeded = cost[3];
+  }
+  //COST
+   else if (selected_volume == nr_volume_level1) {
+    amountNeeded = cost[4];
+  } else if (selected_volume == nr_volume_level2) {
+    amountNeeded = cost[5];
+  } else if (selected_volume == nr_volume_level3) {
+    amountNeeded = cost[6];
+  } else if (selected_volume == nr_volume_level4) {
+    amountNeeded = cost[7];
   }
 }
 
@@ -559,6 +588,9 @@ void admin_level_monitoring() {
     case 3:
       displayModule3Results();
       admin_level_monitoring();
+      break;
+    case 0:
+      loop();
       break;
     default:
       Serial.println(" ------------------------------------------------------------------ ");
