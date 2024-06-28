@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 const port = 3000; // Port for the web server
-const serialPortName = 'COM7';
+const serialPortName = 'COM5';
 
 // Serial Port setup
 const myPort = new SerialPort({ path: serialPortName, baudRate: 9600 });

@@ -7,11 +7,25 @@
     <title>USER</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.google.com/specimen/Kumbh+Sans" rel="stylesheet">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
+<style>
+    * {
+        font-family: "Kumbh Sans", sans-serif;
+        font-weight: 400;
+    }
+
+    @supports (font-variation-settings: "wght" 450) {
+        * {
+            font-family: "Kumbh Sans", sans-serif;
+            font-weight: 450;
+        }
+    }
+</style>
 
 <body>
     <div class="container-fluid">
@@ -24,14 +38,16 @@
             <div class="d-flex row justify-content-center align-items-center" style="width:100%; height:80vh;">
                 <div class="card border">
                     <div class="card-header text-center">
-                        <div class="main-header" id="btn_main_header">
+                        <div class="main-header">
                             <img src="../laundrofill-logo.png">
                         </div>
                     </div>
                     <div class="card-body"></div>
                     <div class="card-form">
                         <div class="form-group">
-
+                            <div class="box">
+                                <span id="btn_main_header" class="text-wrap"> Tap here to start </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -335,7 +351,7 @@
             <!-- <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
             </div> -->
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -390,13 +406,13 @@
                                                 <div class="form-group fgr fgr-message">
                                                     <label for="nrTran_payment">Insert payment</label>
                                                     <input type="number" class="nrTran_payment form-control"
-                                                        id="nrTran_payment">
+                                                        id="nrTran_payment" readonly>
 
                                                     <div class="form-group d-flex align-items-center tran-input"
                                                         style="font-size:30px; gap:10px;">
                                                         <label for="nrTran_change">Change: </label>
                                                         <input type="text" class="nrTran_change form-control"
-                                                            id="nrTran_change" placeholder="">
+                                                            id="nrTran_change" placeholder="" readonly>
                                                     </div>
                                                     <div class="form-group d-flex align-items-center tran-input"
                                                         style="font-size:30px; gap:10px;">
@@ -436,7 +452,7 @@
             <!-- <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
             </div> -->
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -491,7 +507,7 @@
             <!-- <div style="width: 100%; margin:auto;">
                 <button class="btn_back" style="width: 10%;" > < </button>
             </div> -->
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -532,7 +548,7 @@
                 <button class="btn_back" style="width: 10%;">
                     < </button>
             </div>
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -584,7 +600,7 @@
                 <button class="btn_back" style="width: 10%;">
                     < </button>
             </div>
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -641,7 +657,7 @@
                 <button class="btn_back" style="width: 10%;">
                     < </button>
             </div>
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -698,7 +714,7 @@
                 <button class="btn_back" style="width: 10%;">
                     < </button>
             </div>
-            <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+            <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
                 <div class="card border" style="width:80%;">
                     <div class="card-header text-center">
                         <div class="main-header">
@@ -758,7 +774,7 @@
             <button class="btn_back" style="width: 10%;">
                 < </button>
         </div>
-        <div class="d-flex justify-content-center align-items-center" style="width:100%; gap:20px;">
+        <div class="d-flex justify-content-center align-items-center" style="width:100%; height: 100vh;">
             <div class="card border" style="width:80%;">
                 <div class="card-header text-center">
                     <div class="main-header">

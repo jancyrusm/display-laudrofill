@@ -1,23 +1,13 @@
 :root {
-    /* --font-color: #404040; */
-    /* --font-color-light: #C5C5C5; */
-    /* --btn-color-main: #C5C5C5;
-    --btn-color-hover: #404040;
-
-    --box-bg-color-main: #C5C5C5;
-    --box-bg-color-hover: #404040;
-    --box-color-hover: #fff;
-    --font-color-label: #696969; */
-
-
     --font-size: 35px;
+    
 
     --bg-color-body: #FFFFFA;
-    --color-primary-green: #68BE5F;
-    --color-primary-blue: #4F80C1;
-    --color-secondary-blue: #649bce;
-    --color-muted-blue: #4C5584;
-    --color-muted-green: #075C38;
+    --color-primary-green: #84C45E;
+    --color-primary-blue: #578CC6;
+    --color-secondary-blue: #7FC5E8;
+    --color-muted-blue: #2A3D69;
+    --color-muted-green: #044828;
     --color-primary-white: #FFFFFA;
     --color-primary-gray: #706868;
     --color-muted-gray: #c5c5c5;
@@ -33,8 +23,6 @@
     --btn-bg-color-hover: #4C5584;
     --btn-color-hover: #FFFFFA;
 
-
-
 }
 
 @font-face {
@@ -43,6 +31,7 @@
 }
 
 body {
+    font-family: 'Kumbh Sans';
     font-size: var(--font-size);
     background-color: var(--bg-color-body);
     color: var(--color-muted-blue);
@@ -71,7 +60,7 @@ body button:hover {
     font-weight: bold;
     align-items: center;
     letter-spacing: 20px;
-    padding: 0.5rem;
+    padding: 2rem 24rem;
 }
 
 .card-header .sub-header {
