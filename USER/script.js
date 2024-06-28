@@ -70,7 +70,7 @@ var price_prod2_nr_vol4 = "30.00";
 var price_prod3_nr_vol1 = "5.00";
 var price_prod3_nr_vol2 = "12.00";
 var price_prod3_nr_vol3 = "25.00";
-var price_prod2_nr_vol4 = "30.00";
+var price_prod3_nr_vol4 = "30.00";
 
 
 // DISPENSE RATE
@@ -289,16 +289,16 @@ function getUnitPrice() {
 
     // product 3
     else if(volume === nr_volume_name1 && product === product_name3) {
-        price = price_prod3_vol1;
+        price = price_prod3_nr_vol1;
     } 
     else if(volume === nr_volume_name2 && product === product_name3) {
-        price = price_prod3_vol2;
+        price = price_prod3_nr_vol2;
     } 
     else if(volume === nr_volume_name3 && product === product_name3) {
-        price = price_prod3_vol3;
+        price = price_prod3_nr_vol3;
     } 
     else if(volume === nr_volume_name4 && product === product_name3) {
-        price = price_prod3_vol4;
+        price = price_prod3_nr_vol4;
     }
 
     /////////////// SMART DISPENSE  ///////////////////////////////////
@@ -414,9 +414,6 @@ function dispenseLoading() {
             finalTime = timeDelay + 3000;
         }
     
-        setTimeout(function() {
-            pageSelected("p_finish");
-        }, finalTime);
     }
     else {
         if (selected_volume === volume_name1) {
@@ -436,10 +433,11 @@ function dispenseLoading() {
             finalTime = timeDelay + 4000;
         }
     
-        setTimeout(function() {
-            pageSelected("p_finish");
-        }, finalTime);
     }
+
+    setTimeout(function() {
+        pageSelected("p_finish");
+    }, finalTime);
 
     $('#tagged').val("saveTransaction");
     $('#service_type').val(service_type);
