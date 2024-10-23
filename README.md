@@ -5,4 +5,5 @@ LaundroFill is an IoT liquid dispensing machine that features an LCD touchscreen
 # Wireframe
 
 <a href="https://www.figma.com/proto/I6nTkFidjPWVb5rfQCJt92/LaundroFill-Wireframe?node-id=1-2&node-type=canvas&t=TRBNl7lqfQCOpJpM-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2/" rel="some text">![LaundroFill Wireframe](Start.png)</a>
+* Click to Browse Prototype
 
